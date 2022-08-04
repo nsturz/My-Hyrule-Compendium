@@ -4,15 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
+  <header class="row justify-center">
+    <img src="images/triforce.png" alt="" class="triforce-image-1">
+    <h1>MY HYRULE COMPENDIUM</h1>
+    <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
-  <main>
+  <main class="column-full">
+    <div data-view="form" class=" form-wrapper row justify-center hidden">
+      <form class="column-full">
+        <div class="row justify-center">
+          <input type="text" placeholder="search for something...">
+        </div>
+        <div class="row justify-center">
+          <button class="submit-button">SUBMIT</button>
+        </div>
+        <div class="row justify-center">
+          <h3 class="or-go-to">OR GO TO</h3>
+        </div>
+        <div class="row justify-center">
+          <button class="my-compendium-button">MY COMPENDIUM</button>
+        </div>
+      </form>
+    </div>
+    <div data-view="search-result" class="row wrap justify-center">
+      <div class="column-half">
+        <div class="row justify-center">
+          <h2>LYNEL</h2>
+        </div>
+        <div class="row justify-center">
+          <img src="images/lynel.png" alt="" class="result-image">
+        </div>
+        <div class="row justify-center">
+          <h3>NOTES</h3>
+        </div>
+        <div class="row justify-center" id="notes-text">
+          <p>None.</p>
+        </div>
+      </div>
+      <div class="column-half search-result-details">
+        <h3 class="text-align-center" id="category">CATEGORY</h3>
+        <p class="text-align-center" id="category-text">Placeholder</p>
+        <h3 class="text-align-center" id="location">LOCATION</h3>
+        <p class="text-align-center" id="location-text">Placeholder</p>
+        <h3 class="text-align-center" id="description">DESCRIPTION</h3>
+        <p class="text-align-center" id="description-text">Placeholder.</p>
+        <h3 class="text-align-center" id="drops">DROPS</h3>
+        <p class="text-align-center" id="drops-text">Placeholder</p>
+        <h3 class="text-align-center" id="id">ID</h3>
+        <p class="text-align-center" id="id-text">Placeholder</p>
+        <div class="row justify-center">
+          <button class="add-to-compendium-button">ADD TO COMPENDIUM</button>
+        </div>
+        <div class="row justify-center">
+          <button class="my-compendium-button">MY COMPENDIUM</button>
+        </div>
+      </div>
+    </div>
+    <footer class="row justify-center">
+      <a href="#">BACK TO SEARCH</a>
+    </footer>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
