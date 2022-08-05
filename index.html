@@ -19,13 +19,24 @@
     <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
   <main class="column-full">
-    <div data-view="form" class=" form-wrapper row justify-center hidden">
+    <div data-view="form" class="views form-wrapper row justify-center">
       <form class="column-full">
         <div class="row justify-center">
-          <input type="text" placeholder="search for something..." id="search-bar">
+          <input type="text" placeholder="Try Calamity Ganon, Master Sword..."
+          id="search-bar" required>
+        </div>
+        <div class="row justify-center select-wrapper" >
+          <select id="select-category" required>
+            <option value="monsters">Monsters</option>
+            <option value="equipment">Equipment</option>
+            <option value="materials">Materials</option>
+            <option value="critters">Critters</option>
+            <option value="non-critters">Non-Critters</option>
+            <option value="treasure">Treasure</option>
+          </select>
         </div>
         <div class="row justify-center">
-          <button class="submit-button">SUBMIT</button>
+          <button class="submit-button" id="submit-button">SUBMIT</button>
         </div>
         <div class="row justify-center">
           <h3 class="or-go-to">OR GO TO</h3>
@@ -35,10 +46,10 @@
         </div>
       </form>
     </div>
-    <div data-view="search-result" class="row wrap justify-center">
+    <div data-view="search-result" class="views row wrap justify-center hidden">
       <div class="column-half">
         <div class="row justify-center">
-          <h2>NAME</h2>
+          <h2>LOADING...</h2>
         </div>
         <div class="row justify-center">
           <img src="images/triforce.png" alt="" class="result-image" id="result-image">
@@ -76,10 +87,10 @@
           <button class="my-compendium-button">MY COMPENDIUM</button>
         </div>
       </div>
+      <footer class="row justify-center">
+        <a href="#">BACK TO SEARCH</a>
+      </footer>
     </div>
-    <footer class="row justify-center">
-      <a href="#">BACK TO SEARCH</a>
-    </footer>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
