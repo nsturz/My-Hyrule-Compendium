@@ -15,7 +15,7 @@
 <body>
   <header class="row justify-center">
     <img src="images/triforce.png" alt="" class="triforce-image-1">
-    <h1>MY HYRULE COMPENDIUM</h1>
+    <h1 id="main-title">MY HYRULE COMPENDIUM</h1>
     <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
   <main class="column-full">
@@ -27,6 +27,7 @@
         </div>
         <div class="row justify-center select-wrapper" >
           <select id="select-category" required>
+            <option value="#">select a category</option>
             <option value="monsters">Monsters</option>
             <option value="equipment">Equipment</option>
             <option value="materials">Materials</option>
@@ -49,7 +50,7 @@
     <div data-view="search-result" class="views row wrap justify-center hidden">
       <div class="column-half">
         <div class="row justify-center">
-          <h2>LOADING...</h2>
+          <h2 id="loading">LOADING...</h2>
         </div>
         <div class="row justify-center">
           <img src="images/triforce.png" alt="" class="result-image" id="result-image">
@@ -90,6 +91,16 @@
       <footer class="row justify-center">
         <a href="#">BACK TO SEARCH</a>
       </footer>
+    </div>
+    <div data-view="no-result" class="views no-results-wrapper row justify-center hidden">
+      <div class="column-full">
+        <div class="row justify-center">
+          <h2 class="no-results">your search did not return any results</h2>
+        </div>
+        <div class="row justify-center">
+          <button id="back-to-search-button">back to search</button>
+        </div>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>

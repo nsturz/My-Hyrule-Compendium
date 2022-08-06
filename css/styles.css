@@ -18,6 +18,17 @@ a {
   height: 50px;
 }
 
+#back-to-search-button {
+  width: 175px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #2b8091;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin-top: 1%;
+}
+
 body {
   font-family: HyliaSerifBeta-Regular, serif;
   background-color: #d9d9d9;
@@ -49,12 +60,17 @@ form {
   width: 50%;
 }
 
-.form-wrapper {
+.form-wrapper,
+.no-results-wrapper {
   margin-top: 15%;
 }
 
 h1 {
   text-align: center;
+}
+
+h1:hover {
+  cursor: pointer;
 }
 
 h2 {
@@ -98,6 +114,10 @@ input {
   width: 175px;
   height: 50px;
   margin-top: 2%;
+}
+
+.no-results {
+  font-size: 20px;
 }
 
 .or-go-to {
