@@ -66,11 +66,10 @@ function returnMaterials(name) {
         attackText.className = 'text-align-center hidden';
         defense.className = 'text-align-center hidden';
         defenseText.className = 'text-align-center hidden';
-
-      } if (!found) {
-        viewSwap('no-result');
-        document.querySelector('form').reset();
       }
+    } if (!found) {
+      viewSwap('no-result');
+      document.querySelector('form').reset();
     }
 
   });
@@ -83,8 +82,10 @@ function returnCreaturesFood(name) {
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    var found = false;
     for (var i = 0; i < xhr.response.data.creatures.food.length; i++) {
       if (name === xhr.response.data.creatures.food[i].name) {
+        found = true;
         // what is being shown 👇🏼
         loading.textContent = xhr.response.data.creatures.food[i].name;
         image.setAttribute('src', xhr.response.data.creatures.food[i].image);
@@ -105,6 +106,9 @@ function returnCreaturesFood(name) {
         defense.className = 'text-align-center hidden';
         defenseText.className = 'text-align-center hidden';
       }
+    } if (!found) {
+      viewSwap('no-result');
+      document.querySelector('form').reset();
     }
 
   });
@@ -117,8 +121,10 @@ function returnCreaturesNonFood(name) {
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    var found = false;
     for (var i = 0; i < xhr.response.data.creatures['non-food'].length; i++) {
       if (name === xhr.response.data.creatures['non-food'][i].name) {
+        found = true;
         // what is being shown 👇🏼
         loading.textContent = xhr.response.data.creatures['non-food'][i].name;
         image.setAttribute('src', xhr.response.data.creatures['non-food'][i].image);
@@ -142,6 +148,9 @@ function returnCreaturesNonFood(name) {
         defense.className = 'text-align-center hidden';
         defenseText.className = 'text-align-center hidden';
       }
+    } if (!found) {
+      viewSwap('no-result');
+      document.querySelector('form').reset();
     }
 
   });
@@ -192,10 +201,10 @@ function returnMonsters(name) {
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    // console.log('xhr status:', xhr.status);
-    // console.log('xhr response', xhr.response);
+    var found = false;
     for (var i = 0; i < xhr.response.data.monsters.length; i++) {
       if (name === xhr.response.data.monsters[i].name) {
+        found = true;
         // what is being shown 👇🏼
         loading.textContent = xhr.response.data.monsters[i].name;
         image.setAttribute('src', xhr.response.data.monsters[i].image);
@@ -214,11 +223,11 @@ function returnMonsters(name) {
         cookingEffectText.className = 'text-align-center hidden';
         heartsRecovered.className = 'text-align-center hidden';
         heartsRecoveredText.className = 'text-align-center hidden';
-      } // else if (name !== xhr.response.data.monsters[i].name) {
-      //   document.querySelector('form').reset();
-      //   viewSwap('no-result');
-      // }
-    } //
+      }
+    } if (!found) {
+      viewSwap('no-result');
+      document.querySelector('form').reset();
+    }
   });
   xhr.send();
 }
@@ -231,8 +240,10 @@ function returnTreasure(name) {
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    var found = false;
     for (var i = 0; i < xhr.response.data.treasure.length; i++) {
       if (name === xhr.response.data.treasure[i].name) {
+        found = true;
         // what is being shown 👇🏼
         loading.textContent = xhr.response.data.treasure[i].name;
         image.setAttribute('src', xhr.response.data.treasure[i].image);
@@ -251,11 +262,10 @@ function returnTreasure(name) {
         cookingEffectText.className = 'text-align-center hidden';
         heartsRecovered.className = 'text-align-center hidden';
         heartsRecoveredText.className = 'text-align-center hidden';
-
-      } else {
-        // view swap to the "your search did not match any results" page
-        // console.log('your search did not match any results');
       }
+    } if (!found) {
+      viewSwap('no-result');
+      document.querySelector('form').reset();
     }
 
   });
@@ -332,8 +342,6 @@ form.addEventListener('submit', function (event) {
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
     viewSwap('search-result');
-  } // else {
-  //   viewSwap('no-result');
-  // }
+  }
   document.querySelector('form').reset();
 });
