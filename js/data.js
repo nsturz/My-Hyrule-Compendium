@@ -4,6 +4,6 @@ var data = {
   editing: null,
   entries: [],
   nextEntryId: 1,
-  view: 'search form'
+  view: 'form'
 
 };
