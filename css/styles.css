@@ -48,6 +48,14 @@ button:hover {
   padding-right: 20%;
 }
 
+.entry-image {
+  width: 80%;
+}
+
+.entry-title {
+  font-size: 30px;
+}
+
 footer {
   width: 100%;
   background-color: #2b8091;
@@ -103,6 +111,10 @@ input {
 
 .justify-center {
   justify-content: center;
+}
+
+li {
+  list-style: none;
 }
 
 .my-compendium-button {
@@ -179,6 +191,12 @@ select {
   margin-left: 1rem;
 }
 
+ul {
+  margin: auto;
+  margin-top: 1rem;
+  padding: 0%;
+}
+
 .wrap {
   flex-wrap: wrap;
 }
@@ -207,5 +225,17 @@ select {
 
   select {
     width: 20%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .column-one-third {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .column-one-third {
+    flex-basis: 100%;
   }
 }
