@@ -1,0 +1,11 @@
+.column-full {
+  flex-basis: 100%;
+}
+
+.column-half {
+  flex-basis: 50%;
+}
+
+.row {
+  display: flex;
+}
