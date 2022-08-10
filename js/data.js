@@ -7,3 +7,8 @@ var data = {
   view: 'form'
 
 };
+
+window.addEventListener('beforeunload', function (event) {
+  var dataJSON = JSON.stringify(data);
+  localStorage.setItem('ajax-project-local-storage', dataJSON);
+});

@@ -351,25 +351,16 @@ form.addEventListener('submit', function (event) {
 
 // this function will remove unwanted properties from the
 // newEntry object in the addToCompendium callback function👇🏼
-// function deleteKeys(obj) {
-//   for (var keys in obj) {
-//     if (obj[keys] === '' || obj[keys] === null) {
-//       delete obj[keys];
-//     }
-//   } return obj;
-// }
+function deleteKeys(obj) {
+  for (var keys in obj) {
+    if (obj[keys] === 'Data Unavailable') {
+      delete obj[keys];
+    }
+  } return obj;
+}
 
 addToCompendiumButton.addEventListener('click', function (event) {
   // console.log('clicked!!!');
-  // console.log(loading.textContent);
-  // console.log(categoryText.textContent);
-  // console.log(locationText.textcontent);
-  // console.log(defenseText.textContent);
-  // console.log('cooking effect text:', cookingEffectText.textContent);
-  // console.log(descriptionText.textContent);
-  // console.log('hearts recovered text:', heartsRecoveredText.textContent);
-  // console.log('drops text:', dropsText.textContent);
-  // console.log(idText.textContent);
 
   var resultName = loading.textContent;
   var resultCategory = categoryText.textContent;
@@ -380,6 +371,14 @@ addToCompendiumButton.addEventListener('click', function (event) {
   var resultHeartsRecovered = heartsRecoveredText.textContent;
   var resultDrops = dropsText.textContent;
   var resultId = idText.textContent;
+
+  // you will eventually need to re structure this callback function to include
+  // this conditional 👇🏼
+  // if(data.editing !== null){
+
+  // } else{
+
+  // }
 
   var newEntry = {};
   newEntry.name = resultName;
@@ -393,6 +392,9 @@ addToCompendiumButton.addEventListener('click', function (event) {
   newEntry.id = resultId;
   newEntry.entryId = data.nextEntryId;
   data.nextEntryId++;
-  // next up: put this above object into the deleteKeys function 👆🏼
+  deleteKeys(newEntry);
+  data.entries.push(newEntry);
+  // console.log('data entries:', data.entries);
   // console.log('newEntry object:', newEntry);
+  // console.log('next entry id:', data.nextEntryId);
 });
