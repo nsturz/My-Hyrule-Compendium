@@ -12,3 +12,8 @@ window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('ajax-project-local-storage', dataJSON);
 });
+
+var previousEntriesJSON = localStorage.getItem('ajax-project-local-storage');
+if (previousEntriesJSON !== null) {
+  data = JSON.parse(previousEntriesJSON);
+}
