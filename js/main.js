@@ -1,3 +1,4 @@
+var addToCompendiumButton = document.getElementById('add-to-compendium-button');
 var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
 var form = document.querySelector('form');
@@ -30,6 +31,7 @@ function returnCompendium() {
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    // console.log(xhr.response);
   });
   xhr.send();
 }
@@ -166,6 +168,7 @@ function returnEquipment(name) {
     var found = false;
     for (var i = 0; i < xhr.response.data.equipment.length; i++) {
       if (name === xhr.response.data.equipment[i].name) {
+        // console.log('xhr response:', xhr.response.data.equipment[i]);
         found = true;
         // what is being shown 👇🏼
         viewSwap('search-result');
@@ -344,4 +347,52 @@ form.addEventListener('submit', function (event) {
     viewSwap('search-result');
   }
   document.querySelector('form').reset();
+});
+
+// this function will remove unwanted properties from the
+// newEntry object in the addToCompendium callback function👇🏼
+// function deleteKeys(obj) {
+//   for (var keys in obj) {
+//     if (obj[keys] === '' || obj[keys] === null) {
+//       delete obj[keys];
+//     }
+//   } return obj;
+// }
+
+addToCompendiumButton.addEventListener('click', function (event) {
+  // console.log('clicked!!!');
+  // console.log(loading.textContent);
+  // console.log(categoryText.textContent);
+  // console.log(locationText.textcontent);
+  // console.log(defenseText.textContent);
+  // console.log('cooking effect text:', cookingEffectText.textContent);
+  // console.log(descriptionText.textContent);
+  // console.log('hearts recovered text:', heartsRecoveredText.textContent);
+  // console.log('drops text:', dropsText.textContent);
+  // console.log(idText.textContent);
+
+  var resultName = loading.textContent;
+  var resultCategory = categoryText.textContent;
+  var resultLocation = locationText.textContent;
+  var resultDefense = defenseText.textContent;
+  var resultCookingeffect = cookingEffectText.textContent;
+  var resultDescription = descriptionText.textContent;
+  var resultHeartsRecovered = heartsRecoveredText.textContent;
+  var resultDrops = dropsText.textContent;
+  var resultId = idText.textContent;
+
+  var newEntry = {};
+  newEntry.name = resultName;
+  newEntry.category = resultCategory;
+  newEntry.location = resultLocation;
+  newEntry.defense = resultDefense;
+  newEntry.cookingEffect = resultCookingeffect;
+  newEntry.description = resultDescription;
+  newEntry.heartsRecovered = resultHeartsRecovered;
+  newEntry.drops = resultDrops;
+  newEntry.id = resultId;
+  newEntry.entryId = data.nextEntryId;
+  data.nextEntryId++;
+  // next up: put this above object into the deleteKeys function 👆🏼
+  // console.log('newEntry object:', newEntry);
 });
