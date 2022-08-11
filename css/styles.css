@@ -29,6 +29,21 @@ a {
   margin-top: 1%;
 }
 
+#back-to-search-button-footer {
+  width: 300px;
+  height: 50px;
+  font-size: 35px;
+  background-color: #2b8091;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+/* #back-to-search-footer {
+  position: relative;
+  bottom: 0%;
+} */
+
 body {
   font-family: HyliaSerifBeta-Regular, serif;
   background-color: #d9d9d9;
@@ -117,6 +132,10 @@ li {
   list-style: none;
 }
 
+li:hover {
+  cursor: pointer;
+}
+
 .my-compendium-button {
   background-color: #bd7dab;
   border-radius: 5px;
@@ -195,6 +214,7 @@ ul {
   margin: auto;
   margin-top: 1rem;
   padding: 0%;
+  height: 100%;
 }
 
 .wrap {

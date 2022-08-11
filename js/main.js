@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
-var myCompendiumButton = document.getElementById('my-compendium-button');
-var backToSearch = document.querySelector('a');
+var myCompendiumButtons = document.querySelectorAll('.my-compendium-button');
+// var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
+var backToSearchButtonFooter = document.getElementById('back-to-search-button-footer');
 var form = document.querySelector('form');
 var loading = document.getElementById('loading');
 var image = document.getElementById('result-image');
@@ -314,11 +315,6 @@ function appendLi() {
   }
 }
 
-backToSearch.addEventListener('click', function (event) {
-  viewSwap('form');
-  resetSearchResult();
-});
-
 backToSeachButton.addEventListener('click', function (event) {
   viewSwap('form');
   resetSearchResult();
@@ -326,6 +322,7 @@ backToSeachButton.addEventListener('click', function (event) {
 
 mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
+  data.view = 'form';
   resetSearchResult();
 
 });
@@ -351,7 +348,6 @@ form.addEventListener('submit', function (event) {
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
   }
-  data.view = 'entries';
   document.querySelector('form').reset();
 });
 
@@ -365,8 +361,21 @@ function deleteKeys(obj) {
   } return obj;
 }
 
-myCompendiumButton.addEventListener('click', function (event) {
-  viewSwap('entries');
+// this for loop allows the "my compendium" buttons to do the same thing 👇🏼
+for (var i = 0; i < myCompendiumButtons.length; i++) {
+  myCompendiumButtons[i].addEventListener('click', function (event) {
+    viewSwap('entries');
+    data.view = 'entries';
+  });
+}
+
+// this for loop allows the "back to search" buttons in the footer
+// to do the same thing 👇🏼 its a 'j' because the loop above is using 'i'
+
+backToSearchButtonFooter.addEventListener('click', function (event) {
+  viewSwap('form');
+  data.view = 'form';
+  resetSearchResult();
 });
 
 addToCompendiumButton.addEventListener('click', function (event) {
@@ -406,5 +415,10 @@ addToCompendiumButton.addEventListener('click', function (event) {
   data.nextEntryId++;
   deleteKeys(newEntry);
   data.entries.push(newEntry);
+  while (ul.firstChild) {
+    ul.removeChild(ul.firstChild);
+  }
+  appendLi();
   viewSwap('entries');
+  data.view = 'entries';
 });
