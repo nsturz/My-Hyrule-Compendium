@@ -337,26 +337,21 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   var searchBarInput = form.elements['search-bar'].value;
   searchBarInput.toLowerCase();
-  // console.log('clicked submit');
 
   if (selectCategory.value === 'monsters') {
     returnMonsters(searchBarInput);
-
   } else if (selectCategory.value === 'equipment') {
     returnEquipment(searchBarInput.toLowerCase());
-
   } else if (selectCategory.value === 'materials') {
     returnMaterials(searchBarInput.toLowerCase());
-
   } else if (selectCategory.value === 'critters') {
     returnCreaturesFood(searchBarInput.toLowerCase());
-
   } else if (selectCategory.value === 'non-critters') {
     returnCreaturesNonFood(searchBarInput.toLowerCase());
-
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
   }
+  data.view = 'entries';
   document.querySelector('form').reset();
 });
 
