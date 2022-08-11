@@ -5,7 +5,6 @@ var data = {
   entries: [],
   nextEntryId: 1,
   view: 'form'
-
 };
 
 window.addEventListener('beforeunload', function (event) {

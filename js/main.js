@@ -32,13 +32,17 @@ var selectCategory = document.getElementById('select-category');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
 
+var response;
+
 // this function searches the entire compendium - for research purposes 👇🏼
 function returnCompendium() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    // console.log(xhr.response);
+    response = xhr.response;
+    // console.log(response.data.creatures.non_food);
+    // console.log(xhr.response.data.materials);
   });
   xhr.send();
 }
@@ -48,238 +52,209 @@ returnCompendium();
 // this function searches for materials 👇🏼
 
 function returnMaterials(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var found = false;
-    for (var i = 0; i < xhr.response.data.materials.length; i++) {
-      if (name === xhr.response.data.materials[i].name) {
-        found = true;
-        // what is being shown 👇🏼
-        loading.textContent = xhr.response.data.materials[i].name;
-        image.setAttribute('src', xhr.response.data.materials[i].image);
-        categoryText.textContent = xhr.response.data.materials[i].category;
-        locationText.textContent = xhr.response.data.materials[i].common_locations;
-        cookingEffectText.textContent = xhr.response.data.materials[i].cooking_effect;
-        descriptionText.textContent = xhr.response.data.materials[i].description;
-        heartsRecoveredText.textContent = xhr.response.data.materials[i].hearts_recovered;
-        idText.textContent = xhr.response.data.materials[i].id;
-        heartsRecovered.className = 'text-align-center';
-        heartsRecoveredText.className = 'text-align-center';
+  var found = false;
+  for (var i = 0; i < response.data.materials.length; i++) {
+    if (name === response.data.materials[i].name) {
+      found = true;
+      // what is being shown 👇🏼
+      loading.textContent = response.data.materials[i].name;
+      image.setAttribute('src', response.data.materials[i].image);
+      categoryText.textContent = response.data.materials[i].category;
+      locationText.textContent = response.data.materials[i].common_locations;
+      cookingEffectText.textContent = response.data.materials[i].cooking_effect;
+      descriptionText.textContent = response.data.materials[i].description;
+      heartsRecoveredText.textContent = response.data.materials[i].hearts_recovered;
+      idText.textContent = response.data.materials[i].id;
+      heartsRecovered.className = 'text-align-center';
+      heartsRecoveredText.className = 'text-align-center';
 
-        // what is being hidden 👇🏼
-        drops.className = 'text-align-center hidden';
-        dropsText.className = 'text-align-center hidden';
-        attack.className = 'text-align-center hidden';
-        attackText.className = 'text-align-center hidden';
-        defense.className = 'text-align-center hidden';
-        defenseText.className = 'text-align-center hidden';
-      }
-    } if (!found) {
-      viewSwap('no-result');
-      document.querySelector('form').reset();
+      // what is being hidden 👇🏼
+      drops.className = 'text-align-center hidden';
+      dropsText.className = 'text-align-center hidden';
+      attack.className = 'text-align-center hidden';
+      attackText.className = 'text-align-center hidden';
+      defense.className = 'text-align-center hidden';
+      defenseText.className = 'text-align-center hidden';
     }
-
-  });
-  xhr.send();
+  } if (!found) {
+    viewSwap('no-result');
+    document.querySelector('form').reset();
+  } else if (found) {
+    viewSwap('search-result');
+  }
 }
 
 // // this function searches for creatures that are categorized as food👇🏼
 function returnCreaturesFood(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var found = false;
-    for (var i = 0; i < xhr.response.data.creatures.food.length; i++) {
-      if (name === xhr.response.data.creatures.food[i].name) {
-        found = true;
-        // what is being shown 👇🏼
-        loading.textContent = xhr.response.data.creatures.food[i].name;
-        image.setAttribute('src', xhr.response.data.creatures.food[i].image);
-        categoryText.textContent = xhr.response.data.creatures.food[i].category;
-        locationText.textContent = xhr.response.data.creatures.food[i].common_locations;
-        cookingEffectText.textContent = xhr.response.data.creatures.food[i].cooking_effect;
-        descriptionText.textContent = xhr.response.data.creatures.food[i].description;
-        heartsRecoveredText.textContent = xhr.response.data.creatures.food[i].hearts_recovered;
-        idText.textContent = xhr.response.data.creatures.food[i].id;
-        heartsRecovered.className = 'text-align-center';
-        heartsRecoveredText.className = 'text-align-center';
+  var found = false;
+  for (var i = 0; i < response.data.creatures.food.length; i++) {
+    if (name === response.data.creatures.food[i].name) {
+      found = true;
+      // what is being shown 👇🏼
+      loading.textContent = response.data.creatures.food[i].name;
+      image.setAttribute('src', response.data.creatures.food[i].image);
+      categoryText.textContent = response.data.creatures.food[i].category;
+      locationText.textContent = response.data.creatures.food[i].common_locations;
+      cookingEffectText.textContent = response.data.creatures.food[i].cooking_effect;
+      descriptionText.textContent = response.data.creatures.food[i].description;
+      heartsRecoveredText.textContent = response.data.creatures.food[i].hearts_recovered;
+      idText.textContent = response.data.creatures.food[i].id;
+      heartsRecovered.className = 'text-align-center';
+      heartsRecoveredText.className = 'text-align-center';
 
-        // what is being hidden 👇🏼
-        drops.className = 'text-align-center hidden';
-        dropsText.className = 'text-align-center hidden';
-        attack.className = 'text-align-center hidden';
-        attackText.className = 'text-align-center hidden';
-        defense.className = 'text-align-center hidden';
-        defenseText.className = 'text-align-center hidden';
-      }
-    } if (!found) {
-      viewSwap('no-result');
-      document.querySelector('form').reset();
+      // what is being hidden 👇🏼
+      drops.className = 'text-align-center hidden';
+      dropsText.className = 'text-align-center hidden';
+      attack.className = 'text-align-center hidden';
+      attackText.className = 'text-align-center hidden';
+      defense.className = 'text-align-center hidden';
+      defenseText.className = 'text-align-center hidden';
     }
-
-  });
-  xhr.send();
+  } if (!found) {
+    viewSwap('no-result');
+    document.querySelector('form').reset();
+  } else if (found) {
+    viewSwap('search-result');
+  }
 }
 
 // // this function returns creatures that are categorized as non food 👇🏼
 function returnCreaturesNonFood(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var found = false;
-    for (var i = 0; i < xhr.response.data.creatures['non-food'].length; i++) {
-      if (name === xhr.response.data.creatures['non-food'][i].name) {
-        found = true;
-        // what is being shown 👇🏼
-        loading.textContent = xhr.response.data.creatures['non-food'][i].name;
-        image.setAttribute('src', xhr.response.data.creatures['non-food'][i].image);
-        categoryText.textContent = xhr.response.data.creatures['non-food'][i].category;
-        locationText.textContent = xhr.response.data.creatures['non-food'][i].common_locations;
-        descriptionText.textContent = xhr.response.data.creatures['non-food'][i].description;
-        drops.className = 'text-align-center';
-        dropsText.className = 'text-align-center';
-        dropsText.textContent = xhr.response.data.creatures['non-food'][i].drops;
-        heartsRecoveredText.textContent = xhr.response.data.creatures['non-food'][i].hearts_recovered;
-        idText.textContent = xhr.response.data.creatures['non-food'][i].id;
-        heartsRecovered.className = 'text-align-center';
-        heartsRecoveredText.className = 'text-align-center';
+  var found = false;
+  for (var i = 0; i < response.data.creatures.non_food.length; i++) {
+    if (name === response.data.creatures.non_food[i].name) {
+      found = true;
+      // what is being shown 👇🏼
+      loading.textContent = response.data.creatures.non_food[i].name;
+      image.setAttribute('src', response.data.creatures.non_food[i].image);
+      categoryText.textContent = response.data.creatures.non_food[i].category;
+      locationText.textContent = response.data.creatures.non_food[i].common_locations;
+      descriptionText.textContent = response.data.creatures.non_food[i].description;
+      drops.className = 'text-align-center';
+      dropsText.className = 'text-align-center';
+      dropsText.textContent = response.data.creatures.non_food[i].drops;
+      heartsRecoveredText.textContent = response.data.creatures.non_food[i].hearts_recovered;
+      idText.textContent = response.data.creatures.non_food[i].id;
+      heartsRecovered.className = 'text-align-center';
+      heartsRecoveredText.className = 'text-align-center';
 
-        // what is being hidden 👇🏼
-        cookingEffectText.className = 'text-align-center hidden';
-        cookingEffect.className = 'text-align-center hidden';
-        heartsRecovered.className = 'text-align-center hidden';
-        attack.className = 'text-align-center hidden';
-        attackText.className = 'text-align-center hidden';
-        defense.className = 'text-align-center hidden';
-        defenseText.className = 'text-align-center hidden';
-      }
-    } if (!found) {
-      viewSwap('no-result');
-      document.querySelector('form').reset();
+      // what is being hidden 👇🏼
+      cookingEffectText.className = 'text-align-center hidden';
+      cookingEffect.className = 'text-align-center hidden';
+      heartsRecovered.className = 'text-align-center hidden';
+      attack.className = 'text-align-center hidden';
+      attackText.className = 'text-align-center hidden';
+      defense.className = 'text-align-center hidden';
+      defenseText.className = 'text-align-center hidden';
     }
-
-  });
-  xhr.send();
+  } if (!found) {
+    viewSwap('no-result');
+    document.querySelector('form').reset();
+  } else if (found) {
+    viewSwap('search-result');
+  }
 }
 
 // // this function returns equipment 👇🏼
 function returnEquipment(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var found = false;
-    for (var i = 0; i < xhr.response.data.equipment.length; i++) {
-      if (name === xhr.response.data.equipment[i].name) {
-        // console.log('xhr response:', xhr.response.data.equipment[i]);
-        found = true;
-        // what is being shown 👇🏼
-        viewSwap('search-result');
-        loading.textContent = xhr.response.data.equipment[i].name;
-        image.setAttribute('src', xhr.response.data.equipment[i].image);
-        attackText.textContent = xhr.response.data.equipment[i].attack;
-        categoryText.textContent = xhr.response.data.equipment[i].category;
-        locationText.textContent = xhr.response.data.equipment[i].common_locations;
-        defenseText.textContent = xhr.response.data.equipment[i].defense;
-        descriptionText.textContent = xhr.response.data.equipment[i].description;
-        idText.textContent = xhr.response.data.equipment[i].id;
+  var found = false;
+  for (var i = 0; i < response.data.equipment.length; i++) {
+    if (name === response.data.equipment[i].name) {
+      // console.log('xhr response:', xhr.response.data.equipment[i]);
+      found = true;
+      // what is being shown 👇🏼
+      viewSwap('search-result');
+      loading.textContent = response.data.equipment[i].name;
+      image.setAttribute('src', response.data.equipment[i].image);
+      attackText.textContent = response.data.equipment[i].attack;
+      categoryText.textContent = response.data.equipment[i].category;
+      locationText.textContent = response.data.equipment[i].common_locations;
+      defenseText.textContent = response.data.equipment[i].defense;
+      descriptionText.textContent = response.data.equipment[i].description;
+      idText.textContent = response.data.equipment[i].id;
 
-        // what is being hidden 👇🏼
-        drops.className = 'text-align-center hidden';
-        dropsText.className = 'text-align-center hidden';
-        cookingEffect.className = 'text-align-center hidden';
-        cookingEffectText.className = 'text-align-center hidden';
-        heartsRecovered.className = 'text-align-center hidden';
-        heartsRecoveredText.className = 'text-align-center hidden';
-      } if (!found) {
-        viewSwap('no-result');
-        document.querySelector('form').reset();
-      }
+      // what is being hidden 👇🏼
+      drops.className = 'text-align-center hidden';
+      dropsText.className = 'text-align-center hidden';
+      cookingEffect.className = 'text-align-center hidden';
+      cookingEffectText.className = 'text-align-center hidden';
+      heartsRecovered.className = 'text-align-center hidden';
+      heartsRecoveredText.className = 'text-align-center hidden';
+    } if (!found) {
+      viewSwap('no-result');
+      document.querySelector('form').reset();
+    } else if (found) {
+      viewSwap('search-result');
     }
-
-  });
-  xhr.send();
+  }
 }
 
 // this function returns monsters 👇🏼
 function returnMonsters(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var found = false;
-    for (var i = 0; i < xhr.response.data.monsters.length; i++) {
-      if (name === xhr.response.data.monsters[i].name) {
-        found = true;
-        // what is being shown 👇🏼
-        loading.textContent = xhr.response.data.monsters[i].name;
-        image.setAttribute('src', xhr.response.data.monsters[i].image);
-        categoryText.textContent = xhr.response.data.monsters[i].category;
-        locationText.textContent = xhr.response.data.monsters[i].common_locations;
-        defenseText.textContent = xhr.response.data.monsters[i].defense;
-        descriptionText.textContent = xhr.response.data.monsters[i].description;
-        dropsText.textContent = xhr.response.data.monsters[i].drops;
-        idText.textContent = xhr.response.data.monsters[i].id;
+  var found = false;
+  for (var i = 0; i < response.data.monsters.length; i++) {
+    if (name === response.data.monsters[i].name) {
+      found = true;
+      // what is being shown 👇🏼
+      loading.textContent = response.data.monsters[i].name;
+      image.setAttribute('src', response.data.monsters[i].image);
+      categoryText.textContent = response.data.monsters[i].category;
+      locationText.textContent = response.data.monsters[i].common_locations;
+      defenseText.textContent = response.data.monsters[i].defense;
+      descriptionText.textContent = response.data.monsters[i].description;
+      dropsText.textContent = response.data.monsters[i].drops;
+      idText.textContent = response.data.monsters[i].id;
 
-        // what is being hidden 👇🏼
-        attack.className = 'text-align-center hidden';
-        attackText.className = 'text-align-center hidden';
-        defense.className = 'text-align-center hidden';
-        cookingEffect.className = 'text-align-center hidden';
-        cookingEffectText.className = 'text-align-center hidden';
-        heartsRecovered.className = 'text-align-center hidden';
-        heartsRecoveredText.className = 'text-align-center hidden';
-      }
-    } if (!found) {
-      viewSwap('no-result');
-      document.querySelector('form').reset();
+      // what is being hidden 👇🏼
+      attack.className = 'text-align-center hidden';
+      attackText.className = 'text-align-center hidden';
+      defense.className = 'text-align-center hidden';
+      cookingEffect.className = 'text-align-center hidden';
+      cookingEffectText.className = 'text-align-center hidden';
+      heartsRecovered.className = 'text-align-center hidden';
+      heartsRecoveredText.className = 'text-align-center hidden';
     }
-  });
-  xhr.send();
+  } if (!found) {
+    viewSwap('no-result');
+    document.querySelector('form').reset();
+  } else if (found) {
+    viewSwap('search-result');
+  }
 }
 
 // returnMonsters('calamity ganon');
 
 // this function returns treasure 👇🏼
 function returnTreasure(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var found = false;
-    for (var i = 0; i < xhr.response.data.treasure.length; i++) {
-      if (name === xhr.response.data.treasure[i].name) {
-        found = true;
-        // what is being shown 👇🏼
-        loading.textContent = xhr.response.data.treasure[i].name;
-        image.setAttribute('src', xhr.response.data.treasure[i].image);
-        categoryText.textContent = xhr.response.data.treasure[i].category;
-        locationText.textContent = xhr.response.data.treasure[i].common_locations;
-        defenseText.textContent = xhr.response.data.treasure[i].defense;
-        descriptionText.textContent = xhr.response.data.treasure[i].description;
-        dropsText.textContent = xhr.response.data.treasure[i].drops;
-        idText.textContent = xhr.response.data.treasure[i].id;
+  var found = false;
+  for (var i = 0; i < response.data.treasure.length; i++) {
+    if (name === response.data.treasure[i].name) {
+      found = true;
+      // what is being shown 👇🏼
+      loading.textContent = response.data.treasure[i].name;
+      image.setAttribute('src', response.data.treasure[i].image);
+      categoryText.textContent = response.data.treasure[i].category;
+      locationText.textContent = response.data.treasure[i].common_locations;
+      defenseText.textContent = response.data.treasure[i].defense;
+      descriptionText.textContent = response.data.treasure[i].description;
+      dropsText.textContent = response.data.treasure[i].drops;
+      idText.textContent = response.data.treasure[i].id;
 
-        // what is being hidden 👇🏼
-        attack.className = 'text-align-center hidden';
-        attackText.className = 'text-align-center hidden';
-        defense.className = 'text-align-center hidden';
-        cookingEffect.className = 'text-align-center hidden';
-        cookingEffectText.className = 'text-align-center hidden';
-        heartsRecovered.className = 'text-align-center hidden';
-        heartsRecoveredText.className = 'text-align-center hidden';
-      }
-    } if (!found) {
-      viewSwap('no-result');
-      document.querySelector('form').reset();
+      // what is being hidden 👇🏼
+      attack.className = 'text-align-center hidden';
+      attackText.className = 'text-align-center hidden';
+      defense.className = 'text-align-center hidden';
+      cookingEffect.className = 'text-align-center hidden';
+      cookingEffectText.className = 'text-align-center hidden';
+      heartsRecovered.className = 'text-align-center hidden';
+      heartsRecoveredText.className = 'text-align-center hidden';
     }
-
-  });
-  xhr.send();
+  } if (!found) {
+    viewSwap('no-result');
+    document.querySelector('form').reset();
+  } else if (found) {
+    viewSwap('search-result');
+  }
 }
 
 // you may need to update this function once you add the ENTRIES VIEW👇🏼
@@ -313,9 +288,10 @@ function renderEntry(entry) {
   var li = document.createElement('li');
   li.className = 'column-one-third';
   var row = document.createElement('div');
-  row.className = 'row justify-center';
+  row.className = 'row justify-center image-wrapper';
   var img = document.createElement('img');
   img.setAttribute('src', entry.photo);
+  img.className = 'entry-image';
   row.appendChild(img);
   li.appendChild(row);
   var secondRow = document.createElement('div');
@@ -361,25 +337,25 @@ form.addEventListener('submit', function (event) {
   event.preventDefault();
   var searchBarInput = form.elements['search-bar'].value;
   searchBarInput.toLowerCase();
+  // console.log('clicked submit');
 
   if (selectCategory.value === 'monsters') {
     returnMonsters(searchBarInput);
-    viewSwap('search-result');
+
   } else if (selectCategory.value === 'equipment') {
     returnEquipment(searchBarInput.toLowerCase());
-    viewSwap('search-result');
+
   } else if (selectCategory.value === 'materials') {
     returnMaterials(searchBarInput.toLowerCase());
-    viewSwap('search-result');
+
   } else if (selectCategory.value === 'critters') {
     returnCreaturesFood(searchBarInput.toLowerCase());
-    viewSwap('search-result');
+
   } else if (selectCategory.value === 'non-critters') {
     returnCreaturesNonFood(searchBarInput.toLowerCase());
-    viewSwap('search-result');
+
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
-    viewSwap('search-result');
   }
   document.querySelector('form').reset();
 });
