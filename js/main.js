@@ -348,6 +348,7 @@ form.addEventListener('submit', function (event) {
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
   }
+  data.view = 'search-result';
   document.querySelector('form').reset();
 });
 
