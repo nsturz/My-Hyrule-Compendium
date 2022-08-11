@@ -19,7 +19,7 @@
     <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
   <main class="column-full">
-    <div data-view="form" class="views form-wrapper row justify-center hidden">
+    <div data-view="form" class="views form-wrapper row justify-center wrap">
       <form class="column-full">
         <div class="row justify-center">
           <input type="text" placeholder="Try Calamity Ganon, Master Sword..."
@@ -39,13 +39,15 @@
         <div class="row justify-center">
           <button class="submit-button" id="submit-button">SUBMIT</button>
         </div>
+      </form>
+      <div class="column-full">
         <div class="row justify-center">
           <h3 class="or-go-to">OR GO TO</h3>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button">MY COMPENDIUM</button>
+          <button class="my-compendium-button" id="my-compendium-button">MY COMPENDIUM</button>
         </div>
-      </form>
+      </div>
     </div>
     <div data-view="search-result" class="views row wrap justify-center hidden">
       <div class="column-half">
@@ -94,9 +96,9 @@
         <a href="#">BACK TO SEARCH</a>
       </footer>
     </div>
-    <div data-view="entries">
+    <div data-view="entries" class="views hidden">
       <ul class="row justify-center wrap">
-        <li class="column-one-third">
+        <!-- <li class="column-one-third">
           <div class="row justify-center">
             <img src="images/CALAMITY.png" alt="" class="entry-image">
           </div>
@@ -143,7 +145,7 @@
           <div class="row justify-center">
             <h4 class="entry-title">FROSTBLADE</h4>
           </div>
-        </li>
+        </li> -->
       </ul>
       <footer class="row justify-center">
         <a href="#">BACK TO SEARCH</a>

@@ -1,4 +1,10 @@
+document.addEventListener('DOMContentLoaded', function (event) {
+  appendLi();
+  viewSwap(data.view);
+});
+
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
+var myCompendiumButton = document.getElementById('my-compendium-button');
 var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
 var form = document.querySelector('form');
@@ -24,6 +30,7 @@ var selectCategory = document.getElementById('select-category');
 // var submitButton = document.getElementById('submit-button');
 // var notesText = document.getElementById('notes-text');
 var views = document.querySelectorAll('.views');
+var ul = document.querySelector('ul');
 
 // this function searches the entire compendium - for research purposes 👇🏼
 function returnCompendium() {
@@ -301,7 +308,35 @@ function resetSearchResult() {
 
 }
 
-// viewSwap('no-result');
+// this funtion creates new entries for the DOM 👇🏼
+function renderEntry(entry) {
+  var li = document.createElement('li');
+  li.className = 'column-one-third';
+  var row = document.createElement('div');
+  row.className = 'row justify-center';
+  var img = document.createElement('img');
+  img.setAttribute('src', entry.photo);
+  row.appendChild(img);
+  li.appendChild(row);
+  var secondRow = document.createElement('div');
+  secondRow.className = 'row justify-center';
+  var h4 = document.createElement('h4');
+  h4.className = 'entry-title';
+  h4.textContent = entry.name;
+  secondRow.appendChild(h4);
+  li.appendChild(secondRow);
+  return li;
+}
+
+// this function  adds the new entry to the current list of
+// entries 👇🏼
+function appendLi() {
+  for (var i = 0; i < data.entries.length; i++) {
+    var newDomTree = renderEntry(data.entries[i]);
+    ul.appendChild(newDomTree);
+
+  }
+}
 
 backToSearch.addEventListener('click', function (event) {
   viewSwap('form');
@@ -359,6 +394,10 @@ function deleteKeys(obj) {
   } return obj;
 }
 
+myCompendiumButton.addEventListener('click', function (event) {
+  viewSwap('entries');
+});
+
 addToCompendiumButton.addEventListener('click', function (event) {
   // console.log('clicked!!!');
 
@@ -371,6 +410,7 @@ addToCompendiumButton.addEventListener('click', function (event) {
   var resultHeartsRecovered = heartsRecoveredText.textContent;
   var resultDrops = dropsText.textContent;
   var resultId = idText.textContent;
+  var resultImage = image.getAttribute('src');
 
   // you will eventually need to re structure this callback function to include
   // this conditional 👇🏼
@@ -390,11 +430,10 @@ addToCompendiumButton.addEventListener('click', function (event) {
   newEntry.heartsRecovered = resultHeartsRecovered;
   newEntry.drops = resultDrops;
   newEntry.id = resultId;
+  newEntry.photo = resultImage;
   newEntry.entryId = data.nextEntryId;
   data.nextEntryId++;
   deleteKeys(newEntry);
   data.entries.push(newEntry);
-  // console.log('data entries:', data.entries);
-  // console.log('newEntry object:', newEntry);
-  // console.log('next entry id:', data.nextEntryId);
+  viewSwap('entries');
 });
