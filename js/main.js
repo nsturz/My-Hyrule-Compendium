@@ -1,4 +1,5 @@
 // see notes!!!
+
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
@@ -46,14 +47,13 @@ function returnCompendium() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     response = xhr.response;
-    // console.log(response.data.creatures.non_food);
+    // console.log(response);
     // console.log(xhr.response.data.materials);
   });
   xhr.send();
 }
 
 returnCompendium();
-
 // this function searches for materials 👇🏼
 
 function returnMaterials(name) {
@@ -88,7 +88,6 @@ function returnMaterials(name) {
     viewSwap('search-result');
   }
 }
-
 // // this function searches for creatures that are categorized as food👇🏼
 function returnCreaturesFood(name) {
   var found = false;
@@ -318,14 +317,13 @@ function appendLi() {
 
   }
 }
-
 function appendSearchResult(object) {
   if (data.currentInfo.category === 'equipment') {
     loading.textContent = object.currentInfo.loading;
     image.setAttribute('src', object.currentInfo.photo);
     attackText.textContent = object.currentInfo.attack;
     categoryText.textContent = object.currentInfo.category;
-    locationText.textContent = object.currentInfo.common_locations;
+    locationText.textContent = object.currentInfo.locations;
     defenseText.textContent = object.currentInfo.defense;
     descriptionText.textContent = object.currentInfo.description;
     idText.textContent = object.currentInfo.id;
@@ -355,9 +353,63 @@ function appendSearchResult(object) {
     cookingEffectText.className = 'text-align-center hidden';
     heartsRecovered.className = 'text-align-center hidden';
     heartsRecoveredText.className = 'text-align-center hidden';
+  } else if (data.currentInfo.category === 'materials') {
+    loading.textContent = data.currentInfo.loading;
+    image.setAttribute('src', data.currentInfo.photo);
+    categoryText.textContent = data.currentInfo.category;
+    locationText.textContent = data.currentInfo.locations;
+    cookingEffectText.textContent = data.currentInfo.cookingEffect;
+    descriptionText.textContent = data.currentInfo.description;
+    heartsRecoveredText.textContent = data.currentInfo.heartsRecovered;
+    idText.textContent = data.currentInfo.id;
+    heartsRecovered.className = 'text-align-center';
+    heartsRecoveredText.className = 'text-align-center';
+
+    // what is being hidden 👇🏼
+    drops.className = 'text-align-center hidden';
+    dropsText.className = 'text-align-center hidden';
+    attack.className = 'text-align-center hidden';
+    attackText.className = 'text-align-center hidden';
+    defense.className = 'text-align-center hidden';
+    defenseText.className = 'text-align-center hidden';
+  } else if (data.currentInfo.category === 'creatures') {
+    // what is beign shown 👇🏼
+    loading.textContent = data.currentInfo.loading;
+    image.setAttribute('src', data.currentInfo.photo);
+    categoryText.textContent = data.currentInfo.category;
+    locationText.textContent = data.currentInfo.locations;
+    cookingEffectText.textContent = data.currentInfo.cookingEffect;
+    descriptionText.textContent = data.currentInfo.description;
+    heartsRecoveredText.textContent = data.currentInfo.heartsRecovered;
+    idText.textContent = data.currentInfo.id;
+    // what is being hidden 👇🏼
+    drops.className = 'text-align-center hidden';
+    dropsText.className = 'text-align-center hidden';
+    attack.className = 'text-align-center hidden';
+    attackText.className = 'text-align-center hidden';
+    defense.className = 'text-align-center hidden';
+    defenseText.className = 'text-align-center hidden';
+  } else if (data.currentInfo.category === 'treasure') {
+    // what is being shown 👇🏼
+    loading.textContent = data.currentInfo.loading;
+    image.setAttribute('src', data.currentInfo.photo);
+    categoryText.textContent = data.currentInfo.category;
+    locationText.textContent = data.currentInfo.locations;
+    defenseText.textContent = data.currentInfo.defense;
+    descriptionText.textContent = data.currentInfo.description;
+    dropsText.textContent = data.currentInfo.drops;
+    idText.textContent = data.currentInfo.id;
+
+    // what is being hidden 👇🏼
+    attack.className = 'text-align-center hidden';
+    attackText.className = 'text-align-center hidden';
+    defense.className = 'text-align-center hidden';
+    cookingEffect.className = 'text-align-center hidden';
+    cookingEffectText.className = 'text-align-center hidden';
+    heartsRecovered.className = 'text-align-center hidden';
+    heartsRecoveredText.className = 'text-align-center hidden';
   }
 }
-
 backToSeachButton.addEventListener('click', function (event) {
   viewSwap('form');
   resetSearchResult();
@@ -415,8 +467,7 @@ form.addEventListener('submit', function (event) {
 
 // console.log('data.loading test:', data.currentInfoloading);
 
-// this function will remove unwanted properties from the
-// newEntry object in the addToCompendium callback function👇🏼
+// this function deletes unneeded keys from an object👇🏼
 function deleteKeys(obj) {
   for (var keys in obj) {
     if ((obj[keys].textContent === 'Data Unavailable') || (obj[keys].textContent === null) ||
