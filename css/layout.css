@@ -6,6 +6,10 @@
   flex-basis: 50%;
 }
 
+.column-one-third {
+  flex-basis: 33%;
+}
+
 .row {
   display: flex;
 }

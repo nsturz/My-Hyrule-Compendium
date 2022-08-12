@@ -19,7 +19,7 @@
     <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
   <main class="column-full">
-    <div data-view="form" class="views form-wrapper row justify-center">
+    <div data-view="form" class="views form-wrapper row justify-center wrap">
       <form class="column-full">
         <div class="row justify-center">
           <input type="text" placeholder="Try Calamity Ganon, Master Sword..."
@@ -39,13 +39,15 @@
         <div class="row justify-center">
           <button class="submit-button" id="submit-button">SUBMIT</button>
         </div>
+      </form>
+      <div class="column-full">
         <div class="row justify-center">
           <h3 class="or-go-to">OR GO TO</h3>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button">MY COMPENDIUM</button>
+          <button class="my-compendium-button" id="my-compendium-button">MY COMPENDIUM</button>
         </div>
-      </form>
+      </div>
     </div>
     <div data-view="search-result" class="views row wrap justify-center hidden">
       <div class="column-half">
@@ -58,39 +60,46 @@
         <div class="row justify-center">
           <h3>NOTES</h3>
         </div>
-        <div class="row justify-center" id="notes-text">
-          <p>None.</p>
+        <div class="row justify-center">
+          <p id="notes-text" class="notes-text">Data Unavailable</p>
         </div>
       </div>
       <div class="column-half search-result-details">
         <h3 class="text-align-center" id="attack">ATTACK</h3>
-        <p class="text-align-center" id="attack-text">Data unavailable</p>
+        <p class="text-align-center" id="attack-text">Data Unavailable</p>
         <h3 class="text-align-center" id="category">CATEGORY</h3>
-        <p class="text-align-center" id="category-text">Data Unavailble.</p>
+        <p class="text-align-center" id="category-text">Data Unavailable</p>
         <h3 class="text-align-center" id="location">LOCATIONS</h3>
-        <p class="text-align-center" id="location-text">Data Unavailble.</p>
+        <p class="text-align-center" id="location-text">Data Unavailable</p>
         <h3 class="text-align-center" id="defense">DEFENSE</h3>
         <p class="text-align-center" id="defense-text">Data Unavailable</p>
         <h3 class="text-align-center" id="cooking-effect">COOKING EFFECT</h3>
         <p class="text-align-center" id="cooking-effect-text">Data Unavailable</p>
         <h3 class="text-align-center" id="description">DESCRIPTION</h3>
-        <p class="text-align-center" id="description-text">Data Unavailble.</p>
+        <p class="text-align-center description-text" id="description-text">Data Unavailable</p>
         <h3 class="text-align-center" id="hearts-recovered">HEARTS RECOVERED</h3>
         <p class="text-align-center" id="hearts-recovered-text">Data Unavailable</p>
         <h3 class="text-align-center" id="drops">DROPS</h3>
-        <p class="text-align-center" id="drops-text">Data Unavailble.</p>
+        <p class="text-align-center" id="drops-text">Data Unavailable</p>
         <h3 class="text-align-center" id="id">ID</h3>
-        <p class="text-align-center" id="id-text">Data Unavailble.</p>
+        <p class="text-align-center" id="id-text">Data Unavailable</p>
         <div class="row justify-center">
-          <button class="add-to-compendium-button">ADD TO COMPENDIUM</button>
+          <button class="add-to-compendium-button" id="add-to-compendium-button">
+            ADD TO COMPENDIUM
+          </button>
         </div>
         <div class="row justify-center">
           <button class="my-compendium-button">MY COMPENDIUM</button>
         </div>
       </div>
       <footer class="row justify-center">
-        <a href="#">BACK TO SEARCH</a>
+        <button id="back-to-search-button-footer" class="back-to-search-button-footer">back to search</button>
       </footer>
+    </div>
+    <div data-view="entries" class="views hidden">
+      <ul class="row justify-center wrap">
+
+      </ul>
     </div>
     <div data-view="no-result" class="views no-results-wrapper row justify-center hidden">
       <div class="column-full">
@@ -98,7 +107,7 @@
           <h2 class="no-results">your search did not return any results</h2>
         </div>
         <div class="row justify-center">
-          <button id="back-to-search-button">back to search</button>
+          <button id="back-to-search-button" class="back-to-search-button">back to search</button>
         </div>
       </div>
     </div>

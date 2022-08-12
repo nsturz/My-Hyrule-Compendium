@@ -3,12 +3,6 @@
   src: url("/Users/nicksturz/Desktop/HyliaSerifBeta-Regular.otf ");
 }
 
-a {
-  text-decoration: none;
-  color: white;
-  font-size: 40px;
-}
-
 .add-to-compendium-button {
   background-color: #2b8091;
   color: white;
@@ -18,15 +12,23 @@ a {
   height: 50px;
 }
 
-#back-to-search-button {
+.back-to-search-button {
   width: 175px;
   height: 40px;
-  font-size: 20px;
+  font-size: 1.2rem;
   background-color: #2b8091;
   border: none;
   border-radius: 5px;
   color: white;
   margin-top: 1%;
+}
+
+.back-to-search-button-footer {
+  font-size: 3rem;
+  background-color: #2b8091;
+  border: none;
+  border-radius: 5px;
+  color: white;
 }
 
 body {
@@ -42,10 +44,18 @@ button:hover {
   cursor: pointer;
 }
 
-#description-text,
-#notes-text {
+.description-text,
+.notes-text {
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.entry-image {
+  width: 80%;
+}
+
+.entry-title {
+  font-size: 2rem;
 }
 
 footer {
@@ -74,12 +84,12 @@ h1:hover {
 }
 
 h2 {
-  font-size: 90px;
+  font-size: 5rem;
   padding-bottom: 0%;
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 2rem;
 }
 
 header {
@@ -91,25 +101,33 @@ header {
   display: none;
 }
 
-/* you may need a media query to djust the width of this for mobile 👇🏼 8/3/22 */
+/* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
 input {
   width: 350px;
   height: 70px;
   border-radius: 5px;
   border-style: none;
   text-align: center;
-  font-size: 15px;
+  font-size: 1rem;
 }
 
 .justify-center {
   justify-content: center;
 }
 
+li {
+  list-style: none;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
 .my-compendium-button {
   background-color: #bd7dab;
   border-radius: 5px;
   border: none;
-  font-size: 15px;
+  font-size: 1rem;
   color: white;
   width: 175px;
   height: 50px;
@@ -117,7 +135,7 @@ input {
 }
 
 .no-results {
-  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 .or-go-to {
@@ -126,7 +144,7 @@ input {
 
 p {
   font-family: "Source Sans Pro", sans-serif;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .result-image {
@@ -153,7 +171,7 @@ select {
 .submit-button {
   width: 100px;
   height: 40px;
-  font-size: 20px;
+  font-size: 1.2rem;
   background-color: #2b8091;
   border: none;
   border-radius: 5px;
@@ -179,15 +197,18 @@ select {
   margin-left: 1rem;
 }
 
+ul {
+  margin: auto;
+  margin-top: 1rem;
+  padding: 0%;
+  height: 100%;
+}
+
 .wrap {
   flex-wrap: wrap;
 }
 
 @media screen and (max-width: 500px) {
-  a {
-    font-size: 30px;
-  }
-
   form {
     margin-top: 30%;
   }
@@ -196,7 +217,7 @@ select {
     width: 250px;
   }
 
-  #description-text {
+  .description-text {
     padding-left: 5%;
     padding-right: 5%;
   }
@@ -207,5 +228,17 @@ select {
 
   select {
     width: 20%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .column-one-third {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .column-one-third {
+    flex-basis: 100%;
   }
 }
