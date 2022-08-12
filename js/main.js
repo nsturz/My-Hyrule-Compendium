@@ -1,22 +1,8 @@
-// you left off on this functionality 👇🏼
+// see notes!!!
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
+  appendSearchResult(data);
   viewSwap(data.view);
-
-  loading.textContent = data.currentInfo.loading;
-  attackText.textContent = data.currentInfo.attack;
-  categoryText.textContent = data.currentInfo.category;
-  locationText.textContent = data.currentInfo.locations;
-  defenseText.textContent = data.currentInfo.defense;
-  cookingEffectText.textContent = data.currentInfo.cookingEffect;
-  descriptionText.textContent = data.currentInfo.description;
-  heartsRecoveredText.textContent = data.currentInfo.heartsRecovered;
-  dropsText.textContent = data.currentInfo.drops;
-  idText.textContent = data.currentInfo.id;
-  notesText.textContent = data.currentInfo.notesText;
-  image.setAttribute('src', data.currentInfo.photo);
-
-  deleteKeys(data.currentInfo);
 
   // console.log('inside DOMContentLoaded:', data.currentInfo);
 });
@@ -333,6 +319,22 @@ function appendLi() {
   }
 }
 
+function appendSearchResult(object) {
+  loading.textContent = object.currentInfo.loading;
+  attackText.textContent = object.currentInfo.attack;
+  categoryText.textContent = object.currentInfo.category;
+  locationText.textContent = object.currentInfo.locations;
+  defenseText.textContent = object.currentInfo.defense;
+  cookingEffectText.textContent = object.currentInfo.cookingEffect;
+  descriptionText.textContent = object.currentInfo.description;
+  heartsRecoveredText.textContent = object.currentInfo.heartsRecovered;
+  dropsText.textContent = object.currentInfo.drops;
+  idText.textContent = object.currentInfo.id;
+  notesText.textContent = object.currentInfo.notesText;
+  image.setAttribute('src', object.currentInfo.photo);
+  deleteKeys(object);
+}
+
 backToSeachButton.addEventListener('click', function (event) {
   viewSwap('form');
   resetSearchResult();
@@ -394,7 +396,8 @@ form.addEventListener('submit', function (event) {
 // newEntry object in the addToCompendium callback function👇🏼
 function deleteKeys(obj) {
   for (var keys in obj) {
-    if (obj[keys] === 'Data Unavailable' || obj[keys] === null) {
+    if ((obj[keys] === 'Data Unavailable') || (obj[keys] === null) ||
+    (obj[keys] === '') || (obj[keys] === 'undefined')) {
       delete obj[keys];
     }
   } return obj;
