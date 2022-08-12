@@ -29,7 +29,7 @@ var mainTitle = document.getElementById('main-title');
 // var searchBar = document.getElementById('search-bar');
 var selectCategory = document.getElementById('select-category');
 // var submitButton = document.getElementById('submit-button');
-// var notesText = document.getElementById('notes-text');
+var notesText = document.getElementById('notes-text');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
 
@@ -324,6 +324,7 @@ mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
   data.view = 'form';
   resetSearchResult();
+  data.currentInfo = {};
 
 });
 
@@ -348,6 +349,20 @@ form.addEventListener('submit', function (event) {
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
   }
+
+  data.currentInfo.loading = loading.textContent;
+  data.currentInfo.attack = attackText.textContent;
+  data.currentInfo.category = categoryText.textContent;
+  data.currentInfo.locations = locationText.textContent;
+  data.currentInfo.defense = defenseText.textContent;
+  data.currentInfo.cookingEffect = cookingEffectText.textContent;
+  data.currentInfo.description = descriptionText.textContent;
+  data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
+  data.currentInfo.drops = dropsText.textContent;
+  data.currentInfo.id = idText.textContent;
+  data.currentInfo.notesText = notesText.textContent;
+
+  // console.log('data.currentInfo:', data.currentInfo);
   data.view = 'search-result';
   document.querySelector('form').reset();
 });

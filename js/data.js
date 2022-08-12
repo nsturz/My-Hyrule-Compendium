@@ -5,9 +5,7 @@ var data = {
   entries: [],
   nextEntryId: 1,
   view: 'form',
-  currentInfo: {
-    loading: 'test'
-  }
+  currentInfo: {}
 };
 
 window.addEventListener('beforeunload', function (event) {
