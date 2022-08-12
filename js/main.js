@@ -352,6 +352,8 @@ form.addEventListener('submit', function (event) {
   document.querySelector('form').reset();
 });
 
+// console.log('data.loading test:', data.currentInfoloading);
+
 // this function will remove unwanted properties from the
 // newEntry object in the addToCompendium callback function👇🏼
 function deleteKeys(obj) {

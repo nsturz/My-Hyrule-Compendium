@@ -4,7 +4,10 @@ var data = {
   editing: null,
   entries: [],
   nextEntryId: 1,
-  view: 'form'
+  view: 'form',
+  currentInfo: {
+    loading: 'test'
+  }
 };
 
 window.addEventListener('beforeunload', function (event) {
