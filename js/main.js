@@ -1,11 +1,8 @@
-// see notes!!!
-
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
   viewSwap(data.view);
 
-  // console.log('inside DOMContentLoaded:', data.currentInfo);
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
@@ -47,8 +44,7 @@ function returnCompendium() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     response = xhr.response;
-    // console.log(response);
-    // console.log(xhr.response.data.materials);
+
   });
   xhr.send();
 }
@@ -225,8 +221,6 @@ function returnMonsters(name) {
     viewSwap('search-result');
   }
 }
-
-// returnMonsters('calamity ganon');
 
 // this function returns treasure 👇🏼
 function returnTreasure(name) {
@@ -459,13 +453,9 @@ form.addEventListener('submit', function (event) {
 
   deleteKeys(data.currentInfo);
 
-  // console.log('inside the submit function', data.currentInfo);
-
   data.view = 'search-result';
   document.querySelector('form').reset();
 });
-
-// console.log('data.loading test:', data.currentInfoloading);
 
 // this function deletes unneeded keys from an object👇🏼
 function deleteKeys(obj) {
@@ -495,7 +485,6 @@ backToSearchButtonFooter.addEventListener('click', function (event) {
 });
 
 addToCompendiumButton.addEventListener('click', function (event) {
-  // console.log('clicked!!!');
 
   var resultName = loading.textContent;
   var resultCategory = categoryText.textContent;
