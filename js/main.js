@@ -320,19 +320,42 @@ function appendLi() {
 }
 
 function appendSearchResult(object) {
-  loading.textContent = object.currentInfo.loading;
-  attackText.textContent = object.currentInfo.attack;
-  categoryText.textContent = object.currentInfo.category;
-  locationText.textContent = object.currentInfo.locations;
-  defenseText.textContent = object.currentInfo.defense;
-  cookingEffectText.textContent = object.currentInfo.cookingEffect;
-  descriptionText.textContent = object.currentInfo.description;
-  heartsRecoveredText.textContent = object.currentInfo.heartsRecovered;
-  dropsText.textContent = object.currentInfo.drops;
-  idText.textContent = object.currentInfo.id;
-  notesText.textContent = object.currentInfo.notesText;
-  image.setAttribute('src', object.currentInfo.photo);
-  deleteKeys(object);
+  if (data.currentInfo.category === 'equipment') {
+    loading.textContent = object.currentInfo.loading;
+    image.setAttribute('src', object.currentInfo.photo);
+    attackText.textContent = object.currentInfo.attack;
+    categoryText.textContent = object.currentInfo.category;
+    locationText.textContent = object.currentInfo.common_locations;
+    defenseText.textContent = object.currentInfo.defense;
+    descriptionText.textContent = object.currentInfo.description;
+    idText.textContent = object.currentInfo.id;
+
+    // what is being hidden 👇🏼
+    drops.className = 'text-align-center hidden';
+    dropsText.className = 'text-align-center hidden';
+    cookingEffect.className = 'text-align-center hidden';
+    cookingEffectText.className = 'text-align-center hidden';
+    heartsRecovered.className = 'text-align-center hidden';
+    heartsRecoveredText.className = 'text-align-center hidden';
+  } else if (data.currentInfo.category === 'monsters') {
+    loading.textContent = data.currentInfo.loading;
+    image.setAttribute('src', data.currentInfo.photo);
+    categoryText.textContent = data.currentInfo.category;
+    locationText.textContent = data.currentInfo.locations;
+    defenseText.textContent = data.currentInfo.defense;
+    descriptionText.textContent = data.currentInfo.description;
+    dropsText.textContent = data.currentInfo.drops;
+    idText.textContent = data.currentInfo.id;
+
+    // what is being hidden 👇🏼
+    attack.className = 'text-align-center hidden';
+    attackText.className = 'text-align-center hidden';
+    defense.className = 'text-align-center hidden';
+    cookingEffect.className = 'text-align-center hidden';
+    cookingEffectText.className = 'text-align-center hidden';
+    heartsRecovered.className = 'text-align-center hidden';
+    heartsRecoveredText.className = 'text-align-center hidden';
+  }
 }
 
 backToSeachButton.addEventListener('click', function (event) {
@@ -396,8 +419,8 @@ form.addEventListener('submit', function (event) {
 // newEntry object in the addToCompendium callback function👇🏼
 function deleteKeys(obj) {
   for (var keys in obj) {
-    if ((obj[keys] === 'Data Unavailable') || (obj[keys] === null) ||
-    (obj[keys] === '') || (obj[keys] === 'undefined')) {
+    if ((obj[keys].textContent === 'Data Unavailable') || (obj[keys].textContent === null) ||
+    (obj[keys].textContent === '') || (obj[keys].textContent === 'undefined')) {
       delete obj[keys];
     }
   } return obj;
