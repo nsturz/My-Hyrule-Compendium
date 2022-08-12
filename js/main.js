@@ -1,6 +1,24 @@
+// you left off on this functionality 👇🏼
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   viewSwap(data.view);
+
+  loading.textContent = data.currentInfo.loading;
+  attackText.textContent = data.currentInfo.attack;
+  categoryText.textContent = data.currentInfo.category;
+  locationText.textContent = data.currentInfo.locations;
+  defenseText.textContent = data.currentInfo.defense;
+  cookingEffectText.textContent = data.currentInfo.cookingEffect;
+  descriptionText.textContent = data.currentInfo.description;
+  heartsRecoveredText.textContent = data.currentInfo.heartsRecovered;
+  dropsText.textContent = data.currentInfo.drops;
+  idText.textContent = data.currentInfo.id;
+  notesText.textContent = data.currentInfo.notesText;
+  image.setAttribute('src', data.currentInfo.photo);
+
+  deleteKeys(data.currentInfo);
+
+  // console.log('inside DOMContentLoaded:', data.currentInfo);
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
@@ -349,7 +367,6 @@ form.addEventListener('submit', function (event) {
   } else if (selectCategory.value === 'treasure') {
     returnTreasure(searchBarInput.toLowerCase());
   }
-
   data.currentInfo.loading = loading.textContent;
   data.currentInfo.attack = attackText.textContent;
   data.currentInfo.category = categoryText.textContent;
@@ -361,8 +378,12 @@ form.addEventListener('submit', function (event) {
   data.currentInfo.drops = dropsText.textContent;
   data.currentInfo.id = idText.textContent;
   data.currentInfo.notesText = notesText.textContent;
+  data.currentInfo.photo = image.getAttribute('src');
 
-  // console.log('data.currentInfo:', data.currentInfo);
+  deleteKeys(data.currentInfo);
+
+  // console.log('inside the submit function', data.currentInfo);
+
   data.view = 'search-result';
   document.querySelector('form').reset();
 });
@@ -373,7 +394,7 @@ form.addEventListener('submit', function (event) {
 // newEntry object in the addToCompendium callback function👇🏼
 function deleteKeys(obj) {
   for (var keys in obj) {
-    if (obj[keys] === 'Data Unavailable') {
+    if (obj[keys] === 'Data Unavailable' || obj[keys] === null) {
       delete obj[keys];
     }
   } return obj;
