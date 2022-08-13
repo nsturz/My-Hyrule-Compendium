@@ -307,6 +307,7 @@ function renderEntry(entry) {
 function appendLi() {
   for (var i = 0; i < data.entries.length; i++) {
     var newDomTree = renderEntry(data.entries[i]);
+
     ul.appendChild(newDomTree);
 
   }
