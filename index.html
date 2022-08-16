@@ -20,7 +20,7 @@
   </header>
   <main class="column-full">
     <div data-view="form" class="views form-wrapper row justify-center wrap">
-      <form class="column-full" id="search-form">
+      <form class=" search-form column-full" id="search-form">
         <div class="row justify-center">
           <input type="text" placeholder="Try Calamity Ganon, Master Sword..."
           id="search-bar" required>
@@ -111,6 +111,19 @@
         </div>
       </div>
     </div>
+    <div class="overlay" id="overlay"></div>
+    <form class="edit-modal-wrapper column-full absolute" id="edit-modal-form">
+      <div class="row justify-center">
+        <h3>Edit Note</h3>
+      </div>
+      <div class="row justify-center">
+        <textarea name="edit-note-box" id="edit-note-box" cols="30" rows="10"></textarea>
+      </div>
+      <div class="row edit-modal-buttons">
+        <button class="cancel-button" id="cancel-button">CANCEL</button>
+        <button class="confirm-button" id="confirm-button">CONFIRM</button>
+      </div>
+    </form>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

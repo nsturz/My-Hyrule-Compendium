@@ -3,6 +3,10 @@
   src: url("/Users/nicksturz/Desktop/HyliaSerifBeta-Regular.otf ");
 }
 
+.absolute {
+  position: absolute;
+}
+
 .add-to-compendium-button {
   background-color: #2b8091;
   color: white;
@@ -44,10 +48,38 @@ button:hover {
   cursor: pointer;
 }
 
+.cancel-button {
+  background-color: #b6b6b6;
+  color: black;
+  margin-left: 0%;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.confirm-button {
+  background-color: #dc2627;
+  color: white;
+  margin-left: 0%;
+}
+
 .description-text,
 .notes-text {
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.edit-modal-buttons {
+  justify-content: space-evenly;
+}
+
+.edit-modal-wrapper {
+  background-color: white;
+  width: 25%;
+  top: 50%;
+  left: 37%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 .entry-image {
@@ -66,9 +98,6 @@ footer {
 }
 
 /* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
-form {
-  width: 50%;
-}
 
 .form-wrapper,
 .no-results-wrapper {
@@ -142,6 +171,15 @@ li {
   margin-top: 3%;
 }
 
+.overlay {
+  background: black;
+  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+}
+
 p {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.2rem;
@@ -149,6 +187,10 @@ p {
 
 .result-image {
   width: 70%;
+}
+
+.search-form {
+  width: 50%;
 }
 
 .search-result-details {
