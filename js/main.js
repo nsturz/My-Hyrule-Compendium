@@ -10,7 +10,7 @@ var myCompendiumButtons = document.querySelectorAll('.my-compendium-button');
 // var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
 var backToSearchButtonFooter = document.getElementById('back-to-search-button-footer');
-var form = document.querySelector('form');
+var searchForm = document.getElementById('search-form');
 var loading = document.getElementById('loading');
 var image = document.getElementById('result-image');
 var attack = document.getElementById('attack');
@@ -31,7 +31,7 @@ var mainTitle = document.getElementById('main-title');
 // var searchBar = document.getElementById('search-bar');
 var selectCategory = document.getElementById('select-category');
 // var submitButton = document.getElementById('submit-button');
-var notesText = document.getElementById('notes-text');
+// var notesText = document.getElementById('notes-text');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
 
@@ -285,6 +285,7 @@ function resetSearchResult() {
 function renderEntry(entry) {
   var li = document.createElement('li');
   li.className = 'column-one-third';
+  li.setAttribute('entry-id', entry.entryId);
   var row = document.createElement('div');
   row.className = 'row justify-center image-wrapper';
   var img = document.createElement('img');
@@ -421,9 +422,9 @@ mainTitle.addEventListener('click', function (event) {
 // // // this function will allow the user to search for entries,
 // // // and display the result on the 'search-result' view 👇🏼
 
-form.addEventListener('submit', function (event) {
+searchForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  var searchBarInput = form.elements['search-bar'].value;
+  var searchBarInput = searchForm.elements['search-bar'].value;
   searchBarInput.toLowerCase();
 
   if (selectCategory.value === 'monsters') {
@@ -449,7 +450,7 @@ form.addEventListener('submit', function (event) {
   data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
   data.currentInfo.drops = dropsText.textContent;
   data.currentInfo.id = idText.textContent;
-  data.currentInfo.notesText = notesText.textContent;
+  // data.currentInfo.notesText = notesText.textContent;
   data.currentInfo.photo = image.getAttribute('src');
 
   deleteKeys(data.currentInfo);

@@ -92,6 +92,10 @@ h3 {
   font-size: 2rem;
 }
 
+h4:hover {
+  cursor: pointer;
+}
+
 header {
   background-color: #2b8091;
   color: white;
@@ -117,10 +121,6 @@ input {
 
 li {
   list-style: none;
-}
-
-li:hover {
-  cursor: pointer;
 }
 
 .my-compendium-button {
