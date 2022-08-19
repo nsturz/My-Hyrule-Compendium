@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
   viewSwap(data.view);
-
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
@@ -297,6 +296,7 @@ function renderEntry(entry) {
   secondRow.className = 'row justify-center';
   var h4 = document.createElement('h4');
   h4.className = 'entry-title';
+  h4.setAttribute('id', 'entry-title');
   h4.textContent = entry.name;
   secondRow.appendChild(h4);
   li.appendChild(secondRow);
@@ -529,3 +529,17 @@ addToCompendiumButton.addEventListener('click', function (event) {
   viewSwap('entries');
   data.view = 'entries';
 });
+
+// ul.addEventListener('click', event => {
+//   if (event.target.matches('#entry-title')) {
+//     console.log('clicked');
+//     console.log(event.target.textContent);
+//     returnMonsters('calamity ganon');
+//     // for (let i = 0; i < data.entries.length; i++) {
+//     //   if (event.target.textContent === data.entries[0] &&
+//     //   data.entries[i].category === 'equipment') {
+//     //     returnEquipment(event.target.textContent);
+//     //   }
+//     // }
+//   }
+// });
