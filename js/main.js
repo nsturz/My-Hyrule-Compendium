@@ -30,9 +30,13 @@ var mainTitle = document.getElementById('main-title');
 // var searchBar = document.getElementById('search-bar');
 var selectCategory = document.getElementById('select-category');
 // var submitButton = document.getElementById('submit-button');
-// var notesText = document.getElementById('notes-text');
+var notesText = document.getElementById('notes-text');
+const notesInput = document.getElementById('edit-note-box');
+const overlay = document.getElementById('overlay');
+const editModal = document.getElementById('edit-modal-form');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
+const editIcon = document.querySelector('i');
 
 var response;
 
@@ -538,9 +542,6 @@ addToCompendiumButton.addEventListener('click', function (event) {
 
 ul.addEventListener('click', event => {
   if (event.target.matches('#entry-title')) {
-    // console.log('clicked');
-    // console.log(event.target.textContent);
-    // returnMonsters('calamity ganon');
     for (let i = 0; i < data.entries.length; i++) {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
@@ -564,4 +565,12 @@ ul.addEventListener('click', event => {
       }
     }
   }
+});
+
+editIcon.addEventListener('click', event => {
+  viewSwap('editing');
+  overlay.className = 'overlay';
+  editModal.className = 'edit-modal-wrapper column-full absolute';
+  notesInput.value = notesText.textContent;
+  data.view = 'editing';
 });
