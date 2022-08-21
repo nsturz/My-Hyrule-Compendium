@@ -43,6 +43,7 @@ function returnCompendium() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     response = xhr.response;
+    // console.log(response);
 
   });
   xhr.send();
@@ -369,6 +370,7 @@ function appendSearchResult(object) {
     defense.className = 'text-align-center hidden';
     defenseText.className = 'text-align-center hidden';
   } else if (data.currentInfo.category === 'creatures') {
+
     // what is beign shown 👇🏼
     loading.textContent = data.currentInfo.loading;
     image.setAttribute('src', data.currentInfo.photo);
@@ -426,6 +428,7 @@ searchForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var searchBarInput = searchForm.elements['search-bar'].value;
   searchBarInput.toLowerCase();
+  // console.log('category:', selectCategory.value);
 
   if (selectCategory.value === 'monsters') {
     returnMonsters(searchBarInput);
@@ -456,6 +459,7 @@ searchForm.addEventListener('submit', function (event) {
   deleteKeys(data.currentInfo);
 
   data.view = 'search-result';
+  data.currentInfo.creatureDetails = selectCategory.value;
   document.querySelector('form').reset();
 });
 
@@ -498,6 +502,7 @@ addToCompendiumButton.addEventListener('click', function (event) {
   var resultDrops = dropsText.textContent;
   var resultId = idText.textContent;
   var resultImage = image.getAttribute('src');
+  // onst creatureDetails = data.currentInfo.creatureDetails;
 
   // you will eventually need to re structure this callback function to include
   // this conditional 👇🏼
@@ -519,6 +524,7 @@ addToCompendiumButton.addEventListener('click', function (event) {
   newEntry.id = resultId;
   newEntry.photo = resultImage;
   newEntry.entryId = data.nextEntryId;
+  newEntry.creatureDetails = data.currentInfo.creatureDetails;
   data.nextEntryId++;
   deleteKeys(newEntry);
   data.entries.push(newEntry);
@@ -530,16 +536,32 @@ addToCompendiumButton.addEventListener('click', function (event) {
   data.view = 'entries';
 });
 
-// ul.addEventListener('click', event => {
-//   if (event.target.matches('#entry-title')) {
-//     console.log('clicked');
-//     console.log(event.target.textContent);
-//     returnMonsters('calamity ganon');
-//     // for (let i = 0; i < data.entries.length; i++) {
-//     //   if (event.target.textContent === data.entries[0] &&
-//     //   data.entries[i].category === 'equipment') {
-//     //     returnEquipment(event.target.textContent);
-//     //   }
-//     // }
-//   }
-// });
+ul.addEventListener('click', event => {
+  if (event.target.matches('#entry-title')) {
+    // console.log('clicked');
+    // console.log(event.target.textContent);
+    // returnMonsters('calamity ganon');
+    for (let i = 0; i < data.entries.length; i++) {
+      if (event.target.textContent === data.entries[i].name &&
+      data.entries[i].category === 'equipment') {
+        returnEquipment(event.target.textContent);
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'monsters') {
+        returnMonsters(event.target.textContent);
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'materials') {
+        returnMaterials(event.target.textContent);
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'creatures') {
+        if (data.entries[i].creatureDetails === 'critters') {
+          returnCreaturesFood(event.target.textContent);
+        } else if (data.entries[i].creatureDetails === 'non-critters') {
+          returnCreaturesNonFood(event.target.textContent);
+        }
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'treasure') {
+        returnTreasure(event.target.textContent);
+      }
+    }
+  }
+});

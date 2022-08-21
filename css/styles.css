@@ -3,6 +3,11 @@
   src: url("/Users/nicksturz/Desktop/HyliaSerifBeta-Regular.otf ");
 }
 
+@font-face {
+  font-family: Triforce;
+  src: url("Users/nicksturz/Desktop/Triforce.ttf");
+}
+
 .absolute {
   position: absolute;
 }
@@ -139,6 +144,17 @@ header {
 
 .hidden {
   display: none;
+}
+
+i {
+  font-family: Triforce, sans-serif;
+  font-size: 2rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+
+i:hover {
+  cursor: pointer;
 }
 
 /* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
