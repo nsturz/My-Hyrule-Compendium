@@ -457,13 +457,13 @@ searchForm.addEventListener('submit', function (event) {
   data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
   data.currentInfo.drops = dropsText.textContent;
   data.currentInfo.id = idText.textContent;
-  // data.currentInfo.notesText = notesText.textContent;
+  data.currentInfo.notes = notesText.textContent;
   data.currentInfo.photo = image.getAttribute('src');
+  data.currentInfo.creatureDetails = selectCategory.value;
 
   deleteKeys(data.currentInfo);
 
   data.view = 'search-result';
-  data.currentInfo.creatureDetails = selectCategory.value;
   document.querySelector('form').reset();
 });
 
@@ -506,6 +506,7 @@ addToCompendiumButton.addEventListener('click', function (event) {
   var resultDrops = dropsText.textContent;
   var resultId = idText.textContent;
   var resultImage = image.getAttribute('src');
+  const resultNotes = notesText.textContent;
   // onst creatureDetails = data.currentInfo.creatureDetails;
 
   // you will eventually need to re structure this callback function to include
@@ -529,6 +530,7 @@ addToCompendiumButton.addEventListener('click', function (event) {
   newEntry.photo = resultImage;
   newEntry.entryId = data.nextEntryId;
   newEntry.creatureDetails = data.currentInfo.creatureDetails;
+  newEntry.notes = resultNotes;
   data.nextEntryId++;
   deleteKeys(newEntry);
   data.entries.push(newEntry);
@@ -546,22 +548,28 @@ ul.addEventListener('click', event => {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
         returnEquipment(event.target.textContent);
+        data.editing = data.entries[i];
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'monsters') {
         returnMonsters(event.target.textContent);
+        data.editing = data.entries[i];
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'materials') {
         returnMaterials(event.target.textContent);
+        data.editing = data.entries[i];
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'creatures') {
         if (data.entries[i].creatureDetails === 'critters') {
           returnCreaturesFood(event.target.textContent);
+          data.editing = data.entries[i];
         } else if (data.entries[i].creatureDetails === 'non-critters') {
           returnCreaturesNonFood(event.target.textContent);
+          data.editing = data.entries[i];
         }
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'treasure') {
         returnTreasure(event.target.textContent);
+        data.editing = data.entries[i];
       }
     }
   }
@@ -573,4 +581,24 @@ editIcon.addEventListener('click', event => {
   editModal.className = 'edit-modal-wrapper column-full absolute';
   notesInput.value = notesText.textContent;
   data.view = 'editing';
+
+});
+
+editModal.addEventListener('click', event => {
+
+  if (event.target.matches('#cancel-button')) {
+    data.view = 'search-result';
+    overlay.className = 'overlay hidden';
+    editModal.className = 'views edit-modal-wrapper column-full absolute hidden';
+  }
+  // if (event.target.matches('#confirm-button')) {
+  //   notesText.textContent = editModal.elements.notesInput.value;
+  //   for (let i = 0; i < data.entries.length; i++) {
+  //     if (data.entries[i].entryId === data.editing.entryId) {
+  //       data.entries[i].notes = notesText.textContent;
+  //     }
+  //   } viewSwap('search-result');
+  //   overlay.className = 'overlay hidden';
+  //   editModal.className = 'edit-modal-wrapper column-full absolute hidden';
+  // }
 });
