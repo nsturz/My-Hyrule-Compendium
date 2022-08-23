@@ -189,6 +189,7 @@ function returnEquipment(name) {
       document.querySelector('form').reset();
     } else if (found) {
       viewSwap('search-result');
+      data.view = 'search-result';
     }
   }
 }
@@ -422,6 +423,7 @@ mainTitle.addEventListener('click', function (event) {
   data.view = 'form';
   resetSearchResult();
   data.currentInfo = {};
+  data.editing = null;
 
 });
 
@@ -572,22 +574,20 @@ ul.addEventListener('click', event => {
         data.editing = data.entries[i];
       }
     }
-  }
+  } data.view = 'search-result';
 });
 
 editIcon.addEventListener('click', event => {
-  viewSwap('editing');
   overlay.className = 'overlay';
   editModal.className = 'edit-modal-wrapper column-full absolute';
   notesInput.value = notesText.textContent;
-  data.view = 'editing';
 
 });
 
 editModal.addEventListener('click', event => {
 
   if (event.target.matches('#cancel-button')) {
-    data.view = 'search-result';
+    data.editing = null;
     overlay.className = 'overlay hidden';
     editModal.className = 'views edit-modal-wrapper column-full absolute hidden';
   }
