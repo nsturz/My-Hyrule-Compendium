@@ -3,10 +3,10 @@
   src: url("/Users/nicksturz/Desktop/HyliaSerifBeta-Regular.otf ");
 }
 
-@font-face {
+/* @font-face {
   font-family: Triforce;
   src: url("Users/nicksturz/Desktop/Triforce.ttf");
-}
+} */
 
 .absolute {
   position: absolute;

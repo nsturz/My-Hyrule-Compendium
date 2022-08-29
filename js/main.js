@@ -1,3 +1,5 @@
+// 8/29/22 mystery of the viewswap / data view dillema. left off on "my compendium buttons"
+
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
@@ -5,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
-var myCompendiumButtons = document.querySelectorAll('.my-compendium-button');
+var myCompendiumButton1 = document.getElementById('my-compendium-button-1');
+const myCompendiumButton2 = document.getElementById('my-compendium-button-2');
 // var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
 var backToSearchButtonFooter = document.getElementById('back-to-search-button-footer');
@@ -189,7 +192,6 @@ function returnEquipment(name) {
       document.querySelector('form').reset();
     } else if (found) {
       viewSwap('search-result');
-      data.view = 'search-result';
     }
   }
 }
@@ -479,13 +481,16 @@ function deleteKeys(obj) {
   } return obj;
 }
 
-// this for loop allows the "my compendium" buttons to do the same thing 👇🏼
-for (var i = 0; i < myCompendiumButtons.length; i++) {
-  myCompendiumButtons[i].addEventListener('click', function (event) {
-    viewSwap('entries');
-    data.view = 'entries';
-  });
-}
+// these "my compendium" buttons to do the same thing 👇🏼
+
+myCompendiumButton1.addEventListener('click', function (event) {
+  viewSwap('entries');
+  data.view = 'entries';
+});
+myCompendiumButton2.addEventListener('click', function (event) {
+  viewSwap('entries');
+  data.view = 'entries';
+});
 
 // this for loop allows the "back to search" buttons in the footer
 // to do the same thing 👇🏼 its a 'j' because the loop above is using 'i'
