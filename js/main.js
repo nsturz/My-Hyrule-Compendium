@@ -1,5 +1,4 @@
-// 8/29/22 mystery of the viewswap / data view dillema. left off on "my compendium buttons"
-
+// 8/30/22 up next is to finish edit functionality, and delete functionality
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
@@ -578,7 +577,21 @@ ul.addEventListener('click', event => {
         returnTreasure(event.target.textContent);
         data.editing = data.entries[i];
       }
-    }
+    } data.currentInfo.loading = loading.textContent;
+    data.currentInfo.attack = attackText.textContent;
+    data.currentInfo.category = categoryText.textContent;
+    data.currentInfo.locations = locationText.textContent;
+    data.currentInfo.defense = defenseText.textContent;
+    data.currentInfo.cookingEffect = cookingEffectText.textContent;
+    data.currentInfo.description = descriptionText.textContent;
+    data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
+    data.currentInfo.drops = dropsText.textContent;
+    data.currentInfo.id = idText.textContent;
+    data.currentInfo.notes = notesText.textContent;
+    data.currentInfo.photo = image.getAttribute('src');
+    data.currentInfo.creatureDetails = selectCategory.value;
+
+    deleteKeys(data.currentInfo);
   } data.view = 'search-result';
 });
 
