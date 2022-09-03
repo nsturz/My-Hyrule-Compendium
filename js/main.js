@@ -1,10 +1,8 @@
-// 9/3/22 - notes now update, but now we need to make sure that they only display for the
-// appropriate entry. right now the same note shows on every entry.
-
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
   viewSwap(data.view);
+
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
