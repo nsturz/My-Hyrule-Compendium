@@ -1,4 +1,6 @@
-// 8/30/22 up next is to finish edit functionality, and delete functionality
+// 9/3/22 - notes now update, but now we need to make sure that they only display for the
+// appropriate entry. right now the same note shows on every entry.
+
 document.addEventListener('DOMContentLoaded', function (event) {
   appendLi();
   appendSearchResult(data);
@@ -421,6 +423,7 @@ backToSeachButton.addEventListener('click', function (event) {
 
 mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
+  editIcon.className = 'hidden';
   data.view = 'form';
   resetSearchResult();
   data.currentInfo = {};
@@ -431,7 +434,7 @@ mainTitle.addEventListener('click', function (event) {
 // // // this function will allow the user to search for entries,
 // // // and display the result on the 'search-result' view 👇🏼
 
-searchForm.addEventListener('submit', function (event) {
+searchForm.addEventListener('submit', event => {
   event.preventDefault();
   var searchBarInput = searchForm.elements['search-bar'].value;
   searchBarInput.toLowerCase();
@@ -496,6 +499,7 @@ myCompendiumButton2.addEventListener('click', function (event) {
 
 backToSearchButtonFooter.addEventListener('click', function (event) {
   viewSwap('form');
+  editIcon.className = 'hidden';
   data.view = 'form';
   resetSearchResult();
 });
@@ -549,33 +553,40 @@ addToCompendiumButton.addEventListener('click', function (event) {
 });
 
 ul.addEventListener('click', event => {
+  editIcon.className = '';
   if (event.target.matches('#entry-title')) {
     for (let i = 0; i < data.entries.length; i++) {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
         returnEquipment(event.target.textContent);
         data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'monsters') {
         returnMonsters(event.target.textContent);
         data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'materials') {
         returnMaterials(event.target.textContent);
         data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'creatures') {
         if (data.entries[i].creatureDetails === 'critters') {
           returnCreaturesFood(event.target.textContent);
           data.editing = data.entries[i];
+          notesText.textContent = data.entries[i].notes;
         } else if (data.entries[i].creatureDetails === 'non-critters') {
           returnCreaturesNonFood(event.target.textContent);
           data.editing = data.entries[i];
+          notesText.textContent = data.entries[i].notes;
         }
       } else if (event.target.textContent === data.entries[i].name &&
         data.entries[i].category === 'treasure') {
         returnTreasure(event.target.textContent);
         data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
       }
     } data.currentInfo.loading = loading.textContent;
     data.currentInfo.attack = attackText.textContent;
@@ -601,22 +612,41 @@ editIcon.addEventListener('click', event => {
   notesInput.value = notesText.textContent;
 
 });
-
 editModal.addEventListener('click', event => {
-
   if (event.target.matches('#cancel-button')) {
-    data.editing = null;
     overlay.className = 'overlay hidden';
     editModal.className = 'views edit-modal-wrapper column-full absolute hidden';
   }
-  // if (event.target.matches('#confirm-button')) {
-  //   notesText.textContent = editModal.elements.notesInput.value;
-  //   for (let i = 0; i < data.entries.length; i++) {
-  //     if (data.entries[i].entryId === data.editing.entryId) {
-  //       data.entries[i].notes = notesText.textContent;
-  //     }
-  //   } viewSwap('search-result');
-  //   overlay.className = 'overlay hidden';
-  //   editModal.className = 'edit-modal-wrapper column-full absolute hidden';
-  // }
+  if (event.target.matches('#confirm-button')) {
+    const editedEntry = {};
+    editedEntry.name = data.currentInfo.loading;
+    editedEntry.attack = data.currentInfo.attack;
+    editedEntry.category = data.currentInfo.category;
+    editedEntry.cookingEffect = data.currentInfo.cookingEffect;
+    editedEntry.creatureDetails = data.currentInfo.creatureDetails;
+    editedEntry.defense = data.currentInfo.defense;
+    editedEntry.description = data.currentInfo.description;
+    editedEntry.drops = data.currentInfo.drops;
+    editedEntry.entryId = data.editing.entryId;
+    editedEntry.heartsRecorvered = data.currentInfo.heartsRecovered;
+    editedEntry.id = data.currentInfo.id;
+    editedEntry.locations = data.currentInfo.locations;
+    editedEntry.notes = notesInput.value;
+    editedEntry.photo = data.currentInfo.photo;
+
+    notesText.textContent = notesInput.value;
+    deleteKeys(editedEntry);
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        data.entries[i] = editedEntry;
+      }
+    }
+
+    viewSwap('search-result');
+    overlay.className = 'overlay hidden';
+    editModal.className = 'edit-modal-wrapper column-full absolute hidden';
+    // event.preventDefault();
+    // editModal.reset();
+  }
 });
