@@ -21,6 +21,10 @@
   height: 50px;
 }
 
+.align-center {
+  text-align: center;
+}
+
 .back-to-search-button {
   width: 175px;
   height: 40px;
@@ -58,9 +62,10 @@ button:hover {
   color: white;
   margin-left: 0%;
   margin-top: 5%;
+  margin-bottom: 5%;
   border-style: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .confirm-button {
@@ -68,19 +73,25 @@ button:hover {
   color: white;
   margin-left: 0%;
   margin-top: 5%;
+  margin-bottom: 5%;
   border-style: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+
+.delete-modal-wrapper {
+  border: 1px solid black;
+  width: 30%;
+  top: 40%;
+  left: 35%;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .description-text,
 .notes-text {
   padding-left: 20%;
   padding-right: 20%;
-}
-
-.edit-modal-buttons {
-  justify-content: space-evenly;
 }
 
 .edit-modal-wrapper {
@@ -173,6 +184,10 @@ input {
 
 li {
   list-style: none;
+}
+
+.modal-buttons {
+  justify-content: space-evenly;
 }
 
 .my-compendium-button {
@@ -295,7 +310,8 @@ ul {
     padding-right: 5%;
   }
 
-  .edit-modal-wrapper {
+  .edit-modal-wrapper,
+  .delete-modal-wrapper {
     position: fixed;
     width: 250px;
     left: 18%;

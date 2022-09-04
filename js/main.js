@@ -640,11 +640,7 @@ editModal.addEventListener('click', event => {
         data.entries[i] = editedEntry;
       }
     }
-
-    viewSwap('search-result');
     overlay.className = 'overlay hidden';
     editModal.className = 'edit-modal-wrapper column-full absolute hidden';
-    // event.preventDefault();
-    // editModal.reset();
   }
 });
