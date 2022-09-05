@@ -29,9 +29,7 @@ var drops = document.getElementById('drops');
 var dropsText = document.getElementById('drops-text');
 var idText = document.getElementById('id-text');
 var mainTitle = document.getElementById('main-title');
-// var searchBar = document.getElementById('search-bar');
 var selectCategory = document.getElementById('select-category');
-// var submitButton = document.getElementById('submit-button');
 var notesText = document.getElementById('notes-text');
 const notesInput = document.getElementById('edit-note-box');
 const overlay = document.getElementById('overlay');
@@ -39,6 +37,8 @@ const editModal = document.getElementById('edit-modal-form');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
 const editIcon = document.querySelector('i');
+const deleteModal = document.getElementById('delete-modal');
+const deleteEntryButton = document.getElementById('delete-entry-button');
 
 var response;
 
@@ -56,8 +56,8 @@ function returnCompendium() {
 }
 
 returnCompendium();
-// this function searches for materials 👇🏼
 
+// this function searches for materials 👇🏼
 function returnMaterials(name) {
   var found = false;
   for (var i = 0; i < response.data.materials.length; i++) {
@@ -422,6 +422,7 @@ backToSeachButton.addEventListener('click', function (event) {
 mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
   editIcon.className = 'hidden';
+  deleteEntryButton.clasName = 'delete-entry-button hidden';
   data.view = 'form';
   resetSearchResult();
   data.currentInfo = {};
@@ -492,18 +493,15 @@ myCompendiumButton2.addEventListener('click', function (event) {
   data.view = 'entries';
 });
 
-// this for loop allows the "back to search" buttons in the footer
-// to do the same thing 👇🏼 its a 'j' because the loop above is using 'i'
-
 backToSearchButtonFooter.addEventListener('click', function (event) {
   viewSwap('form');
   editIcon.className = 'hidden';
+  deleteEntryButton.className = 'delete-entry-button hidden';
   data.view = 'form';
   resetSearchResult();
 });
 
 addToCompendiumButton.addEventListener('click', function (event) {
-
   var resultName = loading.textContent;
   var resultCategory = categoryText.textContent;
   var resultLocation = locationText.textContent;
@@ -551,8 +549,10 @@ addToCompendiumButton.addEventListener('click', function (event) {
 });
 
 ul.addEventListener('click', event => {
-  editIcon.className = '';
+  editIcon.className = 'edit-icon';
+  data.view = 'search-result';
   if (event.target.matches('#entry-title')) {
+    deleteEntryButton.className = 'delete-entry-button';
     for (let i = 0; i < data.entries.length; i++) {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
@@ -596,12 +596,11 @@ ul.addEventListener('click', event => {
     data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
     data.currentInfo.drops = dropsText.textContent;
     data.currentInfo.id = idText.textContent;
-    data.currentInfo.notes = notesText.textContent;
     data.currentInfo.photo = image.getAttribute('src');
     data.currentInfo.creatureDetails = selectCategory.value;
 
     deleteKeys(data.currentInfo);
-  } data.view = 'search-result';
+  }
 });
 
 editIcon.addEventListener('click', event => {
@@ -610,12 +609,14 @@ editIcon.addEventListener('click', event => {
   notesInput.value = notesText.textContent;
 
 });
+
+// this event listener allows you to edit notes on entries 👇🏼
 editModal.addEventListener('click', event => {
-  if (event.target.matches('#cancel-button')) {
+  if (event.target.matches('#edit-cancel-button')) {
     overlay.className = 'overlay hidden';
     editModal.className = 'views edit-modal-wrapper column-full absolute hidden';
   }
-  if (event.target.matches('#confirm-button')) {
+  if (event.target.matches('#edit-confirm-button')) {
     const editedEntry = {};
     editedEntry.name = data.currentInfo.loading;
     editedEntry.attack = data.currentInfo.attack;
@@ -642,5 +643,32 @@ editModal.addEventListener('click', event => {
     }
     overlay.className = 'overlay hidden';
     editModal.className = 'edit-modal-wrapper column-full absolute hidden';
+  }
+});
+
+deleteEntryButton.addEventListener('click', event => {
+  overlay.className = 'overlay';
+  deleteModal.className = 'delete-modal-wrapper column-full absolute';
+});
+
+// this event listener allows you to delete entries 👇🏼
+deleteModal.addEventListener('click', event => {
+  if (event.target.matches('#delete-cancel-button')) {
+    overlay.className = 'overlay hidden';
+    deleteModal.className = 'delete -modal - wrapper column - full absolute hidden';
+  } else if (event.target.matches('#delete-confirm-button')) {
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        const lis = document.querySelectorAll('li');
+        const toBeDeleted = lis[i];
+        ul.removeChild(toBeDeleted);
+        data.entries.splice(i, 1);
+        overlay.className = 'overlay hidden';
+        deleteModal.className = 'delete-modal-wrapper column-full absolute hidden';
+        data.editing = null;
+        viewSwap('entries');
+        data.view = 'entries';
+      }
+    }
   }
 });
