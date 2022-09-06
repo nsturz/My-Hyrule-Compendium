@@ -21,6 +21,10 @@
   height: 50px;
 }
 
+.align-center {
+  text-align: center;
+}
+
 .back-to-search-button {
   width: 175px;
   height: 40px;
@@ -58,9 +62,10 @@ button:hover {
   color: white;
   margin-left: 0%;
   margin-top: 5%;
+  margin-bottom: 5%;
   border-style: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 .confirm-button {
@@ -68,19 +73,37 @@ button:hover {
   color: white;
   margin-left: 0%;
   margin-top: 5%;
+  margin-bottom: 5%;
   border-style: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+
+.delete-entry-button {
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #dc2627;
+  color: white;
+}
+
+.delete-modal-wrapper {
+  border: 1px solid black;
+  width: 30%;
+  top: 40%;
+  left: 35%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.delete-modal-wrapper:hover {
+  cursor: pointer;
 }
 
 .description-text,
 .notes-text {
   padding-left: 20%;
   padding-right: 20%;
-}
-
-.edit-modal-buttons {
-  justify-content: space-evenly;
 }
 
 .edit-modal-wrapper {
@@ -108,8 +131,6 @@ footer {
   color: white;
   margin-top: 5%;
 }
-
-/* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
 
 .form-wrapper,
 .no-results-wrapper {
@@ -157,7 +178,6 @@ i:hover {
   cursor: pointer;
 }
 
-/* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
 input {
   width: 350px;
   height: 70px;
@@ -173,6 +193,10 @@ input {
 
 li {
   list-style: none;
+}
+
+.modal-buttons {
+  justify-content: space-evenly;
 }
 
 .my-compendium-button {
@@ -197,9 +221,9 @@ li {
 .overlay {
   background: black;
   opacity: 0.7;
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 1174px;
+  height: 100%;
   top: 0%;
 }
 
@@ -295,9 +319,10 @@ ul {
     padding-right: 5%;
   }
 
-  .edit-modal-wrapper {
+  .edit-modal-wrapper,
+  .delete-modal-wrapper {
     position: fixed;
-    width: 250px;
+    width: 270px;
     left: 18%;
   }
 
