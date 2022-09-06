@@ -20,7 +20,7 @@
   </header>
   <main class="column-full">
     <div data-view="form" class="views form-wrapper row justify-center wrap">
-      <form class="column-full">
+      <form class=" search-form column-full" id="search-form">
         <div class="row justify-center">
           <input type="text" placeholder="Try Calamity Ganon, Master Sword..."
           id="search-bar" required>
@@ -45,7 +45,7 @@
           <h3 class="or-go-to">OR GO TO</h3>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button" id="my-compendium-button">MY COMPENDIUM</button>
+          <button class="my-compendium-button" id="my-compendium-button-1">MY COMPENDIUM</button>
         </div>
       </div>
     </div>
@@ -57,11 +57,12 @@
         <div class="row justify-center">
           <img src="images/triforce.png" alt="" class="result-image" id="result-image">
         </div>
-        <div class="row justify-center">
+        <div class="row justify-center notes-wrapper">
           <h3>NOTES</h3>
+          <i class="hidden">@</i>
         </div>
         <div class="row justify-center">
-          <p id="notes-text" class="notes-text">Data Unavailable</p>
+          <p id="notes-text" class="notes-text notes-wrapper">Data Unavailable</p>
         </div>
       </div>
       <div class="column-half search-result-details">
@@ -89,7 +90,7 @@
           </button>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button">MY COMPENDIUM</button>
+          <button class="my-compendium-button" id="my-compendium-button-2">MY COMPENDIUM</button>
         </div>
       </div>
       <footer class="row justify-center">
@@ -97,7 +98,7 @@
       </footer>
     </div>
     <div data-view="entries" class="views hidden">
-      <ul class="row justify-center wrap">
+      <ul class="row justify-center wrap" id="entries-list">
 
       </ul>
     </div>
@@ -109,6 +110,19 @@
         <div class="row justify-center">
           <button id="back-to-search-button" class="back-to-search-button">back to search</button>
         </div>
+      </div>
+    </div>
+    <div class="overlay hidden" id="overlay"></div>
+    <div class="views edit-modal-wrapper column-full absolute hidden" id="edit-modal-form">
+      <div class="row justify-center">
+        <h3>Edit Note</h3>
+      </div>
+      <div class="row justify-center">
+        <textarea name="edit-note-box" id="edit-note-box" cols="35" rows="10"></textarea>
+      </div>
+      <div class="row edit-modal-buttons">
+        <button class="cancel-button" id="cancel-button">CANCEL</button>
+        <button type="submit" class="confirm-button" id="confirm-button">CONFIRM</button>
       </div>
     </div>
   </main>

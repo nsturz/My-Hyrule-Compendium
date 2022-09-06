@@ -6,11 +6,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
 });
 
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
-var myCompendiumButtons = document.querySelectorAll('.my-compendium-button');
+var myCompendiumButton1 = document.getElementById('my-compendium-button-1');
+const myCompendiumButton2 = document.getElementById('my-compendium-button-2');
 // var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
 var backToSearchButtonFooter = document.getElementById('back-to-search-button-footer');
-var form = document.querySelector('form');
+var searchForm = document.getElementById('search-form');
 var loading = document.getElementById('loading');
 var image = document.getElementById('result-image');
 var attack = document.getElementById('attack');
@@ -32,8 +33,12 @@ var mainTitle = document.getElementById('main-title');
 var selectCategory = document.getElementById('select-category');
 // var submitButton = document.getElementById('submit-button');
 var notesText = document.getElementById('notes-text');
+const notesInput = document.getElementById('edit-note-box');
+const overlay = document.getElementById('overlay');
+const editModal = document.getElementById('edit-modal-form');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
+const editIcon = document.querySelector('i');
 
 var response;
 
@@ -44,6 +49,7 @@ function returnCompendium() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     response = xhr.response;
+    // console.log(response);
 
   });
   xhr.send();
@@ -285,6 +291,7 @@ function resetSearchResult() {
 function renderEntry(entry) {
   var li = document.createElement('li');
   li.className = 'column-one-third';
+  li.setAttribute('entry-id', entry.entryId);
   var row = document.createElement('div');
   row.className = 'row justify-center image-wrapper';
   var img = document.createElement('img');
@@ -296,6 +303,7 @@ function renderEntry(entry) {
   secondRow.className = 'row justify-center';
   var h4 = document.createElement('h4');
   h4.className = 'entry-title';
+  h4.setAttribute('id', 'entry-title');
   h4.textContent = entry.name;
   secondRow.appendChild(h4);
   li.appendChild(secondRow);
@@ -307,6 +315,7 @@ function renderEntry(entry) {
 function appendLi() {
   for (var i = 0; i < data.entries.length; i++) {
     var newDomTree = renderEntry(data.entries[i]);
+
     ul.appendChild(newDomTree);
 
   }
@@ -367,6 +376,7 @@ function appendSearchResult(object) {
     defense.className = 'text-align-center hidden';
     defenseText.className = 'text-align-center hidden';
   } else if (data.currentInfo.category === 'creatures') {
+
     // what is beign shown 👇🏼
     loading.textContent = data.currentInfo.loading;
     image.setAttribute('src', data.currentInfo.photo);
@@ -411,19 +421,22 @@ backToSeachButton.addEventListener('click', function (event) {
 
 mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
+  editIcon.className = 'hidden';
   data.view = 'form';
   resetSearchResult();
   data.currentInfo = {};
+  data.editing = null;
 
 });
 
 // // // this function will allow the user to search for entries,
 // // // and display the result on the 'search-result' view 👇🏼
 
-form.addEventListener('submit', function (event) {
+searchForm.addEventListener('submit', event => {
   event.preventDefault();
-  var searchBarInput = form.elements['search-bar'].value;
+  var searchBarInput = searchForm.elements['search-bar'].value;
   searchBarInput.toLowerCase();
+  // console.log('category:', selectCategory.value);
 
   if (selectCategory.value === 'monsters') {
     returnMonsters(searchBarInput);
@@ -448,8 +461,9 @@ form.addEventListener('submit', function (event) {
   data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
   data.currentInfo.drops = dropsText.textContent;
   data.currentInfo.id = idText.textContent;
-  data.currentInfo.notesText = notesText.textContent;
+  data.currentInfo.notes = notesText.textContent;
   data.currentInfo.photo = image.getAttribute('src');
+  data.currentInfo.creatureDetails = selectCategory.value;
 
   deleteKeys(data.currentInfo);
 
@@ -467,19 +481,23 @@ function deleteKeys(obj) {
   } return obj;
 }
 
-// this for loop allows the "my compendium" buttons to do the same thing 👇🏼
-for (var i = 0; i < myCompendiumButtons.length; i++) {
-  myCompendiumButtons[i].addEventListener('click', function (event) {
-    viewSwap('entries');
-    data.view = 'entries';
-  });
-}
+// these "my compendium" buttons to do the same thing 👇🏼
+
+myCompendiumButton1.addEventListener('click', function (event) {
+  viewSwap('entries');
+  data.view = 'entries';
+});
+myCompendiumButton2.addEventListener('click', function (event) {
+  viewSwap('entries');
+  data.view = 'entries';
+});
 
 // this for loop allows the "back to search" buttons in the footer
 // to do the same thing 👇🏼 its a 'j' because the loop above is using 'i'
 
 backToSearchButtonFooter.addEventListener('click', function (event) {
   viewSwap('form');
+  editIcon.className = 'hidden';
   data.view = 'form';
   resetSearchResult();
 });
@@ -496,6 +514,8 @@ addToCompendiumButton.addEventListener('click', function (event) {
   var resultDrops = dropsText.textContent;
   var resultId = idText.textContent;
   var resultImage = image.getAttribute('src');
+  const resultNotes = notesText.textContent;
+  // onst creatureDetails = data.currentInfo.creatureDetails;
 
   // you will eventually need to re structure this callback function to include
   // this conditional 👇🏼
@@ -517,6 +537,8 @@ addToCompendiumButton.addEventListener('click', function (event) {
   newEntry.id = resultId;
   newEntry.photo = resultImage;
   newEntry.entryId = data.nextEntryId;
+  newEntry.creatureDetails = data.currentInfo.creatureDetails;
+  newEntry.notes = resultNotes;
   data.nextEntryId++;
   deleteKeys(newEntry);
   data.entries.push(newEntry);
@@ -526,4 +548,103 @@ addToCompendiumButton.addEventListener('click', function (event) {
   appendLi();
   viewSwap('entries');
   data.view = 'entries';
+});
+
+ul.addEventListener('click', event => {
+  editIcon.className = '';
+  if (event.target.matches('#entry-title')) {
+    for (let i = 0; i < data.entries.length; i++) {
+      if (event.target.textContent === data.entries[i].name &&
+      data.entries[i].category === 'equipment') {
+        returnEquipment(event.target.textContent);
+        data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'monsters') {
+        returnMonsters(event.target.textContent);
+        data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'materials') {
+        returnMaterials(event.target.textContent);
+        data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'creatures') {
+        if (data.entries[i].creatureDetails === 'critters') {
+          returnCreaturesFood(event.target.textContent);
+          data.editing = data.entries[i];
+          notesText.textContent = data.entries[i].notes;
+        } else if (data.entries[i].creatureDetails === 'non-critters') {
+          returnCreaturesNonFood(event.target.textContent);
+          data.editing = data.entries[i];
+          notesText.textContent = data.entries[i].notes;
+        }
+      } else if (event.target.textContent === data.entries[i].name &&
+        data.entries[i].category === 'treasure') {
+        returnTreasure(event.target.textContent);
+        data.editing = data.entries[i];
+        notesText.textContent = data.entries[i].notes;
+      }
+    } data.currentInfo.loading = loading.textContent;
+    data.currentInfo.attack = attackText.textContent;
+    data.currentInfo.category = categoryText.textContent;
+    data.currentInfo.locations = locationText.textContent;
+    data.currentInfo.defense = defenseText.textContent;
+    data.currentInfo.cookingEffect = cookingEffectText.textContent;
+    data.currentInfo.description = descriptionText.textContent;
+    data.currentInfo.heartsRecovered = heartsRecoveredText.textContent;
+    data.currentInfo.drops = dropsText.textContent;
+    data.currentInfo.id = idText.textContent;
+    data.currentInfo.notes = notesText.textContent;
+    data.currentInfo.photo = image.getAttribute('src');
+    data.currentInfo.creatureDetails = selectCategory.value;
+
+    deleteKeys(data.currentInfo);
+  } data.view = 'search-result';
+});
+
+editIcon.addEventListener('click', event => {
+  overlay.className = 'overlay';
+  editModal.className = 'edit-modal-wrapper column-full absolute';
+  notesInput.value = notesText.textContent;
+
+});
+editModal.addEventListener('click', event => {
+  if (event.target.matches('#cancel-button')) {
+    overlay.className = 'overlay hidden';
+    editModal.className = 'views edit-modal-wrapper column-full absolute hidden';
+  }
+  if (event.target.matches('#confirm-button')) {
+    const editedEntry = {};
+    editedEntry.name = data.currentInfo.loading;
+    editedEntry.attack = data.currentInfo.attack;
+    editedEntry.category = data.currentInfo.category;
+    editedEntry.cookingEffect = data.currentInfo.cookingEffect;
+    editedEntry.creatureDetails = data.currentInfo.creatureDetails;
+    editedEntry.defense = data.currentInfo.defense;
+    editedEntry.description = data.currentInfo.description;
+    editedEntry.drops = data.currentInfo.drops;
+    editedEntry.entryId = data.editing.entryId;
+    editedEntry.heartsRecorvered = data.currentInfo.heartsRecovered;
+    editedEntry.id = data.currentInfo.id;
+    editedEntry.locations = data.currentInfo.locations;
+    editedEntry.notes = notesInput.value;
+    editedEntry.photo = data.currentInfo.photo;
+
+    notesText.textContent = notesInput.value;
+    deleteKeys(editedEntry);
+
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryId === data.entries[i].entryId) {
+        data.entries[i] = editedEntry;
+      }
+    }
+
+    viewSwap('search-result');
+    overlay.className = 'overlay hidden';
+    editModal.className = 'edit-modal-wrapper column-full absolute hidden';
+    // event.preventDefault();
+    // editModal.reset();
+  }
 });

@@ -3,6 +3,15 @@
   src: url("/Users/nicksturz/Desktop/HyliaSerifBeta-Regular.otf ");
 }
 
+/* @font-face {
+  font-family: Triforce;
+  src: url("Users/nicksturz/Desktop/Triforce.ttf");
+} */
+
+.absolute {
+  position: absolute;
+}
+
 .add-to-compendium-button {
   background-color: #2b8091;
   color: white;
@@ -44,10 +53,45 @@ button:hover {
   cursor: pointer;
 }
 
+.cancel-button {
+  background-color: #dc2627;
+  color: white;
+  margin-left: 0%;
+  margin-top: 5%;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.confirm-button {
+  background-color: #2a8091;
+  color: white;
+  margin-left: 0%;
+  margin-top: 5%;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
 .description-text,
 .notes-text {
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.edit-modal-buttons {
+  justify-content: space-evenly;
+}
+
+.edit-modal-wrapper {
+  background-color: white;
+  width: 30%;
+  top: 35%;
+  left: 35%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 10px;
 }
 
 .entry-image {
@@ -66,9 +110,6 @@ footer {
 }
 
 /* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
-form {
-  width: 50%;
-}
 
 .form-wrapper,
 .no-results-wrapper {
@@ -92,6 +133,10 @@ h3 {
   font-size: 2rem;
 }
 
+h4:hover {
+  cursor: pointer;
+}
+
 header {
   background-color: #2b8091;
   color: white;
@@ -99,6 +144,17 @@ header {
 
 .hidden {
   display: none;
+}
+
+i {
+  font-family: Triforce, sans-serif;
+  font-size: 2rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
+}
+
+i:hover {
+  cursor: pointer;
 }
 
 /* you may need a media query to adjust the width of this for mobile 👇🏼 8/3/22 */
@@ -117,10 +173,6 @@ input {
 
 li {
   list-style: none;
-}
-
-li:hover {
-  cursor: pointer;
 }
 
 .my-compendium-button {
@@ -142,13 +194,30 @@ li:hover {
   margin-top: 3%;
 }
 
+.overlay {
+  background: black;
+  opacity: 0.7;
+  position: absolute;
+  width: 100%;
+  height: 1174px;
+  top: 0%;
+}
+
 p {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.2rem;
 }
 
+.relative {
+  position: relative;
+}
+
 .result-image {
   width: 70%;
+}
+
+.search-form {
+  width: 50%;
 }
 
 .search-result-details {
@@ -209,17 +278,27 @@ ul {
 }
 
 @media screen and (max-width: 500px) {
-  form {
-    margin-top: 30%;
-  }
-
   h1 {
     width: 250px;
+  }
+
+  .confirm-button {
+    font-size: 1.5rem;
+  }
+
+  .cancel-button {
+    font-size: 1.5rem;
   }
 
   .description-text {
     padding-left: 5%;
     padding-right: 5%;
+  }
+
+  .edit-modal-wrapper {
+    position: fixed;
+    width: 250px;
+    left: 18%;
   }
 
   .result-image {
@@ -228,6 +307,10 @@ ul {
 
   select {
     width: 20%;
+  }
+
+  .search-form {
+    margin-top: 30%;
   }
 }
 
