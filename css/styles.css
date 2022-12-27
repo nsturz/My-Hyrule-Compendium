@@ -1,5 +1,5 @@
 @font-face {
-  font-family: HyliaSerifBeta-Regular, serif;
+  font-family: "Hylia Serif";
   src: url("/fonts/HyliaSerifBeta-Regular.otf ");
 }
 
@@ -163,7 +163,7 @@ header {
 }
 
 .hylia-font {
-  font-family: HyliaSerifBeta-Regular, serif;
+  font-family: "Hylia Serif", sans-serif;
 }
 
 i {
