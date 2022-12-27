@@ -15,7 +15,7 @@
 <body>
   <header class="row justify-center">
     <img src="images/triforce.png" alt="" class="triforce-image-1">
-    <h1 id="main-title">MY HYRULE COMPENDIUM</h1>
+    <h1 class="hylia-font" id="main-title">MY HYRULE COMPENDIUM</h1>
     <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
   <main class="column-full">
@@ -37,7 +37,7 @@
           </select>
         </div>
         <div class="row justify-center">
-          <button class="submit-button" id="submit-button">SUBMIT</button>
+          <button class="submit-button hylia-font" id="submit-button">SUBMIT</button>
         </div>
       </form>
       <div class="column-full">
@@ -45,59 +45,59 @@
           <h3 class="or-go-to">OR GO TO</h3>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button" id="my-compendium-button-1">MY COMPENDIUM</button>
+          <button class="my-compendium-button hylia-font" id="my-compendium-button-1">MY COMPENDIUM</button>
         </div>
       </div>
     </div>
     <div data-view="search-result" class="views row wrap justify-center hidden">
       <div class="column-half">
         <div class="row justify-center">
-          <h2 id="loading">LOADING...</h2>
+          <h2 class="hylia-font" id="loading">LOADING...</h2>
         </div>
         <div class="row justify-center">
           <img src="images/triforce.png" alt="" class="result-image" id="result-image">
         </div>
         <div class="row justify-center notes-wrapper">
-          <h3>NOTES</h3>
+          <h3 class="hylia-font">NOTES</h3>
           <i class="edit-icon hidden">@</i>
         </div>
         <div class="row justify-center">
           <p id="notes-text" class="notes-text notes-wrapper">Data Unavailable</p>
         </div>
         <div class="row justify-center">
-          <button class="delete-entry-button hidden" id="delete-entry-button">DELETE ENTRY</button>
+          <button class="delete-entry-button hidden hylia-font" id="delete-entry-button">DELETE ENTRY</button>
         </div>
       </div>
       <div class="column-half search-result-details">
-        <h3 class="text-align-center" id="attack">ATTACK</h3>
+        <h3 class="text-align-center hylia-font" id="attack">ATTACK</h3>
         <p class="text-align-center" id="attack-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="category">CATEGORY</h3>
+        <h3 class="text-align-center hylia-font" id="category">CATEGORY</h3>
         <p class="text-align-center" id="category-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="location">LOCATIONS</h3>
+        <h3 class="text-align-center hylia-font" id="location">LOCATIONS</h3>
         <p class="text-align-center" id="location-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="defense">DEFENSE</h3>
+        <h3 class="text-align-center hylia-font" id="defense">DEFENSE</h3>
         <p class="text-align-center" id="defense-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="cooking-effect">COOKING EFFECT</h3>
+        <h3 class="text-align-center hylia-font" id="cooking-effect">COOKING EFFECT</h3>
         <p class="text-align-center" id="cooking-effect-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="description">DESCRIPTION</h3>
+        <h3 class="text-align-center hylia-font" id="description">DESCRIPTION</h3>
         <p class="text-align-center description-text" id="description-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="hearts-recovered">HEARTS RECOVERED</h3>
+        <h3 class="text-align-center hylia-font" id="hearts-recovered">HEARTS RECOVERED</h3>
         <p class="text-align-center" id="hearts-recovered-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="drops">DROPS</h3>
+        <h3 class="text-align-center hylia-font" id="drops">DROPS</h3>
         <p class="text-align-center" id="drops-text">Data Unavailable</p>
-        <h3 class="text-align-center" id="id">ID</h3>
+        <h3 class="text-align-center hylia-font" id="id">ID</h3>
         <p class="text-align-center" id="id-text">Data Unavailable</p>
         <div class="row justify-center">
-          <button class="add-to-compendium-button" id="add-to-compendium-button">
+          <button class="add-to-compendium-button hylia-font" id="add-to-compendium-button">
             ADD TO COMPENDIUM
           </button>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button" id="my-compendium-button-2">MY COMPENDIUM</button>
+          <button class="my-compendium-button hylia-font" id="my-compendium-button-2">MY COMPENDIUM</button>
         </div>
       </div>
       <footer class="row justify-center">
-        <button id="back-to-search-button-footer" class="back-to-search-button-footer">back to search</button>
+        <button id="back-to-search-button-footer" class="back-to-search-button-footer hylia-font">back to search</button>
       </footer>
     </div>
     <div data-view="entries" class="views hidden">
@@ -108,24 +108,24 @@
     <div data-view="no-result" class="views no-results-wrapper row justify-center hidden">
       <div class="column-full">
         <div class="row justify-center">
-          <h2 class="no-results">your search did not return any results</h2>
+          <h2 class="no-results hylia-font">your search did not return any results</h2>
         </div>
         <div class="row justify-center">
-          <button id="back-to-search-button" class="back-to-search-button">back to search</button>
+          <button id="back-to-search-button" class="back-to-search-button hylia-font">back to search</button>
         </div>
       </div>
     </div>
     <div class="overlay hidden" id="overlay"></div>
     <div class="views edit-modal-wrapper column-full absolute hidden" id="edit-modal-form">
       <div class="row justify-center">
-        <h3>Edit Note</h3>
+        <h3 class="hylia-font">Edit Note</h3>
       </div>
       <div class="row justify-center">
         <textarea name="edit-note-box" id="edit-note-box" cols="35" rows="10"></textarea>
       </div>
       <div class="row modal-buttons">
-        <button class="cancel-button" id="edit-cancel-button">CANCEL</button>
-        <button type="submit" class="confirm-button" id="edit-confirm-button">CONFIRM</button>
+        <button class="cancel-button hylia-font" id="edit-cancel-button">CANCEL</button>
+        <button type="submit" class="confirm-button hylia-font" id="edit-confirm-button">CONFIRM</button>
       </div>
     </div>
     <div class=" delete-modal-wrapper column-full absolute hidden" id="delete-modal">

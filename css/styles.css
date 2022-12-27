@@ -45,12 +45,7 @@
 }
 
 body {
-  font-family: HyliaSerifBeta-Regular, serif;
   background-color: #d9d9d9;
-}
-
-button {
-  font-family: HyliaSerifBeta-Regular, serif;
 }
 
 button:hover {
@@ -165,6 +160,10 @@ header {
 
 .hidden {
   display: none;
+}
+
+.hylia-font {
+  font-family: HyliaSerifBeta-Regular, serif;
 }
 
 i {
