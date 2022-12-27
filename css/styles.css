@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Hylia Serif Beta Regular";
-  src: url("/Users/nicksturz/Desktop/HyliaSerifBeta-Regular.otf ");
-}
-
-/* @font-face {
-  font-family: Triforce;
-  src: url("Users/nicksturz/Desktop/Triforce.ttf");
-} */
-
 .absolute {
   position: absolute;
 }
@@ -60,20 +50,20 @@ button:hover {
 .cancel-button {
   background-color: #dc2627;
   color: white;
-  margin-left: 0%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin: 0.5rem;
   border-style: none;
   border-radius: 5px;
   font-size: 1.5rem;
 }
 
+.column-one-half {
+  flex-basis: 50%;
+}
+
 .confirm-button {
   background-color: #2a8091;
   color: white;
-  margin-left: 0%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin: 0.5rem;
   border-style: none;
   border-radius: 5px;
   font-size: 1.5rem;
@@ -197,6 +187,7 @@ li {
 
 .modal-buttons {
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .my-compendium-button {

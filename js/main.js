@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
 var addToCompendiumButton = document.getElementById('add-to-compendium-button');
 var myCompendiumButton1 = document.getElementById('my-compendium-button-1');
 const myCompendiumButton2 = document.getElementById('my-compendium-button-2');
-// var backToSearch = document.querySelector('a');
 var backToSeachButton = document.getElementById('back-to-search-button');
 var backToSearchButtonFooter = document.getElementById('back-to-search-button-footer');
 var searchForm = document.getElementById('search-form');
@@ -49,8 +48,6 @@ function returnCompendium() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     response = xhr.response;
-    // console.log(response);
-
   });
   xhr.send();
 }
@@ -166,7 +163,6 @@ function returnEquipment(name) {
   var found = false;
   for (var i = 0; i < response.data.equipment.length; i++) {
     if (name === response.data.equipment[i].name) {
-      // console.log('xhr response:', xhr.response.data.equipment[i]);
       found = true;
       // what is being shown 👇🏼
       viewSwap('search-result');
@@ -430,15 +426,13 @@ mainTitle.addEventListener('click', function (event) {
 
 });
 
-// // // this function will allow the user to search for entries,
-// // // and display the result on the 'search-result' view 👇🏼
+// this function will allow the user to search for entries,
+// and display the result on the 'search-result' view 👇🏼
 
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
   var searchBarInput = searchForm.elements['search-bar'].value;
   searchBarInput.toLowerCase();
-  // console.log('category:', selectCategory.value);
-
   if (selectCategory.value === 'monsters') {
     returnMonsters(searchBarInput);
   } else if (selectCategory.value === 'equipment') {
@@ -513,15 +507,6 @@ addToCompendiumButton.addEventListener('click', function (event) {
   var resultId = idText.textContent;
   var resultImage = image.getAttribute('src');
   const resultNotes = notesText.textContent;
-  // onst creatureDetails = data.currentInfo.creatureDetails;
-
-  // you will eventually need to re structure this callback function to include
-  // this conditional 👇🏼
-  // if(data.editing !== null){
-
-  // } else{
-
-  // }
 
   var newEntry = {};
   newEntry.name = resultName;
