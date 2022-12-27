@@ -298,7 +298,7 @@ function renderEntry(entry) {
   var secondRow = document.createElement('div');
   secondRow.className = 'row justify-center';
   var h4 = document.createElement('h4');
-  h4.className = 'entry-title';
+  h4.className = 'entry-title hylia-font';
   h4.setAttribute('id', 'entry-title');
   h4.textContent = entry.name;
   secondRow.appendChild(h4);
