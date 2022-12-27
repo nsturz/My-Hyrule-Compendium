@@ -91,6 +91,15 @@ button:hover {
   padding-right: 20%;
 }
 
+.edit-note-button {
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #2a8091;
+  color: white;
+  margin: 0.5rem;
+}
+
 .edit-modal-wrapper {
   background-color: white;
   width: 30%;

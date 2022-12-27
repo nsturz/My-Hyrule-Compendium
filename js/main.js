@@ -35,7 +35,7 @@ const overlay = document.getElementById('overlay');
 const editModal = document.getElementById('edit-modal-form');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
-const editIcon = document.querySelector('i');
+const editNoteButton = document.getElementById('edit-icon');
 const deleteModal = document.getElementById('delete-modal');
 const deleteEntryButton = document.getElementById('delete-entry-button');
 
@@ -417,8 +417,8 @@ backToSeachButton.addEventListener('click', function (event) {
 
 mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
-  editIcon.className = 'hidden';
-  deleteEntryButton.clasName = 'delete-entry-button hidden';
+  editNoteButton.className = 'hidden';
+  deleteEntryButton.className = 'delete-entry-button hidden';
   data.view = 'form';
   resetSearchResult();
   data.currentInfo = {};
@@ -489,7 +489,7 @@ myCompendiumButton2.addEventListener('click', function (event) {
 
 backToSearchButtonFooter.addEventListener('click', function (event) {
   viewSwap('form');
-  editIcon.className = 'hidden';
+  editNoteButton.className = 'hidden';
   deleteEntryButton.className = 'delete-entry-button hidden';
   data.view = 'form';
   resetSearchResult();
@@ -534,10 +534,10 @@ addToCompendiumButton.addEventListener('click', function (event) {
 });
 
 ul.addEventListener('click', event => {
-  editIcon.className = 'edit-icon';
+  editNoteButton.className = 'edit-icon edit-note-button hylia-font';
   data.view = 'search-result';
   if (event.target.matches('#entry-title')) {
-    deleteEntryButton.className = 'delete-entry-button';
+    deleteEntryButton.className = 'delete-entry-button hylia-font';
     for (let i = 0; i < data.entries.length; i++) {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
@@ -588,7 +588,7 @@ ul.addEventListener('click', event => {
   }
 });
 
-editIcon.addEventListener('click', event => {
+editNoteButton.addEventListener('click', event => {
   overlay.className = 'overlay';
   editModal.className = 'edit-modal-wrapper column-full absolute';
   notesInput.value = notesText.textContent;
