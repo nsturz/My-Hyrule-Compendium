@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Hylia Serif Beta Regular";
+  font-family: Hylia-Serif, sans-serif;
   src: url("/fonts/HyliaSerifBeta-Regular.otf ");
 }
 
 @font-face {
-  font-family: Triforce;
+  font-family: Triforce, sans-serif;
   src: url("/fonts/Triforce.ttf");
 }
 
@@ -45,12 +45,12 @@
 }
 
 body {
-  font-family: HyliaSerifBeta-Regular, serif;
+  font-family: Hylia-Serif, serif;
   background-color: #d9d9d9;
 }
 
 button {
-  font-family: HyliaSerifBeta-Regular, serif;
+  font-family: Hylia-Serif, serif;
 }
 
 button:hover {
