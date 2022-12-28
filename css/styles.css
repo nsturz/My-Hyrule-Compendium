@@ -1,3 +1,7 @@
+a:hover {
+  cursor: pointer;
+}
+
 .absolute {
   position: absolute;
 }
@@ -9,10 +13,6 @@
   border-radius: 5px;
   width: 175px;
   height: 50px;
-}
-
-.align-center {
-  text-align: center;
 }
 
 .back-to-search-button {
@@ -56,10 +56,6 @@ button:hover {
   font-size: 1.5rem;
 }
 
-.column-one-half {
-  flex-basis: 50%;
-}
-
 .confirm-button {
   background-color: #2a8091;
   color: white;
@@ -87,10 +83,6 @@ button:hover {
   left: 35%;
   background-color: white;
   border-radius: 10px;
-}
-
-.delete-modal-wrapper:hover {
-  cursor: pointer;
 }
 
 .description-text,
@@ -147,14 +139,6 @@ footer {
   transform: scale(1.1);
 }
 
-h1 {
-  text-align: center;
-}
-
-h1:hover {
-  cursor: pointer;
-}
-
 h2 {
   font-size: 5rem;
   padding-bottom: 0%;
@@ -162,10 +146,6 @@ h2 {
 
 h3 {
   font-size: 2rem;
-}
-
-h4:hover {
-  cursor: pointer;
 }
 
 header {
@@ -191,17 +171,6 @@ header {
   src: url("../fonts/Triforce.ttf");
 }
 
-i {
-  font-family: Triforce, sans-serif;
-  font-size: 2rem;
-  padding-top: 2rem;
-  padding-left: 1rem;
-}
-
-i:hover {
-  cursor: pointer;
-}
-
 input {
   width: 350px;
   height: 70px;
@@ -219,7 +188,13 @@ li {
   list-style: none;
 }
 
-#main-title:hover {
+.main-title {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 2rem;
+}
+
+.main-title:hover {
   color: #dfd1ad;
   transition: all 0.2s ease-in-out;
 }
@@ -310,14 +285,14 @@ select {
   width: 2rem;
   height: 2rem;
   margin-top: 1.7rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .triforce-image-2 {
   width: 2rem;
   height: 2rem;
   margin-top: 1.7rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 ul {
@@ -366,6 +341,20 @@ ul {
 
   .search-form {
     margin-top: 30%;
+  }
+
+  .triforce-image-1 {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 3rem;
+    margin-left: 3rem;
+  }
+
+  .triforce-image-2 {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 3rem;
+    margin-right: 3rem;
   }
 }
 
