@@ -41,7 +41,6 @@ const deleteEntryButton = document.getElementById('delete-entry-button');
 
 var response;
 
-// this function searches the entire compendium - for research purposes 👇🏼
 function returnCompendium() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://botw-compendium.herokuapp.com/api/v2' + name);
@@ -54,7 +53,6 @@ function returnCompendium() {
 
 returnCompendium();
 
-// this function searches for materials 👇🏼
 function returnMaterials(name) {
   var found = false;
   for (var i = 0; i < response.data.materials.length; i++) {
@@ -87,7 +85,7 @@ function returnMaterials(name) {
     viewSwap('search-result');
   }
 }
-// // this function searches for creatures that are categorized as food👇🏼
+
 function returnCreaturesFood(name) {
   var found = false;
   for (var i = 0; i < response.data.creatures.food.length; i++) {
@@ -121,7 +119,6 @@ function returnCreaturesFood(name) {
   }
 }
 
-// // this function returns creatures that are categorized as non food 👇🏼
 function returnCreaturesNonFood(name) {
   var found = false;
   for (var i = 0; i < response.data.creatures.non_food.length; i++) {
@@ -158,7 +155,6 @@ function returnCreaturesNonFood(name) {
   }
 }
 
-// // this function returns equipment 👇🏼
 function returnEquipment(name) {
   var found = false;
   for (var i = 0; i < response.data.equipment.length; i++) {
@@ -191,7 +187,6 @@ function returnEquipment(name) {
   }
 }
 
-// this function returns monsters 👇🏼
 function returnMonsters(name) {
   var found = false;
   for (var i = 0; i < response.data.monsters.length; i++) {
@@ -224,7 +219,6 @@ function returnMonsters(name) {
   }
 }
 
-// this function returns treasure 👇🏼
 function returnTreasure(name) {
   var found = false;
   for (var i = 0; i < response.data.treasure.length; i++) {
@@ -257,7 +251,6 @@ function returnTreasure(name) {
   }
 }
 
-// you may need to update this function once you add the ENTRIES VIEW👇🏼
 function viewSwap(string) {
   for (var i = 0; i < views.length; i++) {
     if (views[i].getAttribute('data-view') === string) {
@@ -283,7 +276,6 @@ function resetSearchResult() {
 
 }
 
-// this funtion creates new entries for the DOM 👇🏼
 function renderEntry(entry) {
   var li = document.createElement('li');
   li.className = 'column-one-third';
@@ -297,17 +289,15 @@ function renderEntry(entry) {
   li.appendChild(row);
   var secondRow = document.createElement('div');
   secondRow.className = 'row justify-center';
-  var h4 = document.createElement('h4');
-  h4.className = 'entry-title hylia-font grow';
-  h4.setAttribute('id', 'entry-title');
-  h4.textContent = entry.name;
-  secondRow.appendChild(h4);
+  var entryTitle = document.createElement('a');
+  entryTitle.className = 'entry-title hylia-font grow';
+  entryTitle.setAttribute('id', 'entry-title');
+  entryTitle.textContent = entry.name;
+  secondRow.appendChild(entryTitle);
   li.appendChild(secondRow);
   return li;
 }
 
-// this function  adds the new entry to the current list of
-// entries 👇🏼
 function appendLi() {
   for (var i = 0; i < data.entries.length; i++) {
     var newDomTree = renderEntry(data.entries[i]);
@@ -426,9 +416,6 @@ mainTitle.addEventListener('click', function (event) {
 
 });
 
-// this function will allow the user to search for entries,
-// and display the result on the 'search-result' view 👇🏼
-
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
   var searchBarInput = searchForm.elements['search-bar'].value;
@@ -466,7 +453,6 @@ searchForm.addEventListener('submit', event => {
   document.querySelector('form').reset();
 });
 
-// this function deletes unneeded keys from an object👇🏼
 function deleteKeys(obj) {
   for (var keys in obj) {
     if ((obj[keys].textContent === 'Data Unavailable') || (obj[keys].textContent === null) ||
@@ -475,8 +461,6 @@ function deleteKeys(obj) {
     }
   } return obj;
 }
-
-// these "my compendium" buttons to do the same thing 👇🏼
 
 myCompendiumButton1.addEventListener('click', function (event) {
   viewSwap('entries');

@@ -15,7 +15,7 @@
 <body>
   <header class="row justify-center">
     <img src="images/triforce.png" alt="" class="triforce-image-1">
-    <h1 class="hylia-font" id="main-title">MY HYRULE COMPENDIUM</h1>
+    <a class=" main-title hylia-font" id="main-title">MY HYRULE COMPENDIUM</a>
     <img src="images/triforce.png" alt="" class="triforce-image-2">
   </header>
   <main class="column-full">
@@ -104,7 +104,6 @@
     </div>
     <div data-view="entries" class="views hidden">
       <ul class="row justify-center wrap" id="entries-list">
-
       </ul>
     </div>
     <div data-view="no-result" class="views no-results-wrapper row justify-center hidden">
@@ -118,7 +117,7 @@
       </div>
     </div>
     <div class="overlay hidden" id="overlay"></div>
-    <div class="views edit-modal-wrapper column-full absolute hidden" id="edit-modal-form">
+    <form class="views edit-modal-wrapper column-full absolute hidden" id="edit-modal-form">
       <div class="row justify-center">
         <h3 class="hylia-font">Edit Note</h3>
       </div>
@@ -129,9 +128,9 @@
         <button class="cancel-button hylia-font grow" id="edit-cancel-button">CANCEL</button>
         <button type="submit" class="confirm-button hylia-font grow" id="edit-confirm-button">CONFIRM</button>
       </div>
-    </div>
+    </form>
     <div class=" delete-modal-wrapper column-full absolute hidden" id="delete-modal">
-      <div class="row align-center justify-center">
+      <div class="row text-align-center justify-center">
         <h3 class="hylia-font">Are you sure you want to <br> delete this entry?</h3>
       </div>
       <div class="row modal-buttons">
