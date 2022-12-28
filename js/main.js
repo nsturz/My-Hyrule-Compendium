@@ -69,7 +69,7 @@ function returnMaterials(name) {
       descriptionText.textContent = response.data.materials[i].description;
       heartsRecoveredText.textContent = response.data.materials[i].hearts_recovered;
       idText.textContent = response.data.materials[i].id;
-      heartsRecovered.className = 'text-align-center';
+      heartsRecovered.className = 'text-align-center hylia-font';
       heartsRecoveredText.className = 'text-align-center';
 
       // what is being hidden 👇🏼
@@ -298,7 +298,7 @@ function renderEntry(entry) {
   var secondRow = document.createElement('div');
   secondRow.className = 'row justify-center';
   var h4 = document.createElement('h4');
-  h4.className = 'entry-title hylia-font';
+  h4.className = 'entry-title hylia-font grow';
   h4.setAttribute('id', 'entry-title');
   h4.textContent = entry.name;
   secondRow.appendChild(h4);
@@ -534,10 +534,10 @@ addToCompendiumButton.addEventListener('click', function (event) {
 });
 
 ul.addEventListener('click', event => {
-  editNoteButton.className = 'edit-icon edit-note-button hylia-font';
+  editNoteButton.className = 'edit-icon edit-note-button hylia-font grow';
   data.view = 'search-result';
   if (event.target.matches('#entry-title')) {
-    deleteEntryButton.className = 'delete-entry-button hylia-font';
+    deleteEntryButton.className = 'delete-entry-button hylia-font grow';
     for (let i = 0; i < data.entries.length; i++) {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
