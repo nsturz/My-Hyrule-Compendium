@@ -35,7 +35,7 @@ const overlay = document.getElementById('overlay');
 const editModal = document.getElementById('edit-modal-form');
 var views = document.querySelectorAll('.views');
 var ul = document.querySelector('ul');
-const editIcon = document.querySelector('i');
+const editNoteButton = document.getElementById('edit-icon');
 const deleteModal = document.getElementById('delete-modal');
 const deleteEntryButton = document.getElementById('delete-entry-button');
 
@@ -69,7 +69,7 @@ function returnMaterials(name) {
       descriptionText.textContent = response.data.materials[i].description;
       heartsRecoveredText.textContent = response.data.materials[i].hearts_recovered;
       idText.textContent = response.data.materials[i].id;
-      heartsRecovered.className = 'text-align-center';
+      heartsRecovered.className = 'text-align-center hylia-font';
       heartsRecoveredText.className = 'text-align-center';
 
       // what is being hidden 👇🏼
@@ -298,7 +298,7 @@ function renderEntry(entry) {
   var secondRow = document.createElement('div');
   secondRow.className = 'row justify-center';
   var h4 = document.createElement('h4');
-  h4.className = 'entry-title hylia-font';
+  h4.className = 'entry-title hylia-font grow';
   h4.setAttribute('id', 'entry-title');
   h4.textContent = entry.name;
   secondRow.appendChild(h4);
@@ -417,8 +417,8 @@ backToSeachButton.addEventListener('click', function (event) {
 
 mainTitle.addEventListener('click', function (event) {
   viewSwap('form');
-  editIcon.className = 'hidden';
-  deleteEntryButton.clasName = 'delete-entry-button hidden';
+  editNoteButton.className = 'hidden';
+  deleteEntryButton.className = 'delete-entry-button hidden';
   data.view = 'form';
   resetSearchResult();
   data.currentInfo = {};
@@ -489,7 +489,7 @@ myCompendiumButton2.addEventListener('click', function (event) {
 
 backToSearchButtonFooter.addEventListener('click', function (event) {
   viewSwap('form');
-  editIcon.className = 'hidden';
+  editNoteButton.className = 'hidden';
   deleteEntryButton.className = 'delete-entry-button hidden';
   data.view = 'form';
   resetSearchResult();
@@ -534,10 +534,10 @@ addToCompendiumButton.addEventListener('click', function (event) {
 });
 
 ul.addEventListener('click', event => {
-  editIcon.className = 'edit-icon';
+  editNoteButton.className = 'edit-icon edit-note-button hylia-font grow';
   data.view = 'search-result';
   if (event.target.matches('#entry-title')) {
-    deleteEntryButton.className = 'delete-entry-button';
+    deleteEntryButton.className = 'delete-entry-button hylia-font grow';
     for (let i = 0; i < data.entries.length; i++) {
       if (event.target.textContent === data.entries[i].name &&
       data.entries[i].category === 'equipment') {
@@ -588,7 +588,7 @@ ul.addEventListener('click', event => {
   }
 });
 
-editIcon.addEventListener('click', event => {
+editNoteButton.addEventListener('click', event => {
   overlay.className = 'overlay';
   editModal.className = 'edit-modal-wrapper column-full absolute';
   notesInput.value = notesText.textContent;

@@ -34,6 +34,11 @@
   color: white;
 }
 
+.back-to-search-button-footer:hover {
+  color: #dfd1ad;
+  transition: all 0.2s ease-in-out;
+}
+
 body {
   background-color: #d9d9d9;
 }
@@ -70,6 +75,9 @@ button:hover {
   border: none;
   background-color: #dc2627;
   color: white;
+  margin: 0.5rem;
+  width: 175px;
+  height: 50px;
 }
 
 .delete-modal-wrapper {
@@ -89,6 +97,15 @@ button:hover {
 .notes-text {
   padding-left: 20%;
   padding-right: 20%;
+}
+
+.edit-note-button {
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #2a8091;
+  color: white;
+  margin: 0.5rem;
 }
 
 .edit-modal-wrapper {
@@ -119,7 +136,15 @@ footer {
 
 .form-wrapper,
 .no-results-wrapper {
-  margin-top: 15%;
+  margin-top: 10%;
+}
+
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.1);
 }
 
 h1 {
@@ -192,6 +217,11 @@ input {
 
 li {
   list-style: none;
+}
+
+#main-title:hover {
+  color: #dfd1ad;
+  transition: all 0.2s ease-in-out;
 }
 
 .modal-buttons {
@@ -280,14 +310,14 @@ select {
   width: 2rem;
   height: 2rem;
   margin-top: 1.7rem;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 
 .triforce-image-2 {
   width: 2rem;
   height: 2rem;
   margin-top: 1.7rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 
 ul {

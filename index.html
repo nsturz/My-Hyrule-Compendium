@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>My Hyrule Compendium</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
@@ -37,15 +37,15 @@
           </select>
         </div>
         <div class="row justify-center">
-          <button class="submit-button hylia-font" id="submit-button">SUBMIT</button>
+          <button class="submit-button hylia-font grow" id="submit-button">SUBMIT</button>
         </div>
       </form>
       <div class="column-full">
         <div class="row justify-center">
-          <h3 class="or-go-to">OR GO TO</h3>
+          <h3 class="or-go-to hylia-font">OR GO TO</h3>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button hylia-font" id="my-compendium-button-1">MY COMPENDIUM</button>
+          <button class="my-compendium-button hylia-font grow" id="my-compendium-button-1">MY COMPENDIUM</button>
         </div>
       </div>
     </div>
@@ -59,13 +59,12 @@
         </div>
         <div class="row justify-center notes-wrapper">
           <h3 class="hylia-font">NOTES</h3>
-          <i class="edit-icon hidden">@</i>
         </div>
         <div class="row justify-center">
-          <p id="notes-text" class="notes-text notes-wrapper">Data Unavailable</p>
+          <p id="notes-text" class="notes-text notes-wrapper">No notes yet.</p>
         </div>
         <div class="row justify-center">
-          <button class="delete-entry-button hidden hylia-font" id="delete-entry-button">DELETE ENTRY</button>
+          <button class="edit-icon hidden edit-note-button" id="edit-icon">EDIT NOTE</button>
         </div>
       </div>
       <div class="column-half search-result-details">
@@ -88,12 +87,15 @@
         <h3 class="text-align-center hylia-font" id="id">ID</h3>
         <p class="text-align-center" id="id-text">Data Unavailable</p>
         <div class="row justify-center">
-          <button class="add-to-compendium-button hylia-font" id="add-to-compendium-button">
+          <button class="add-to-compendium-button hylia-font grow" id="add-to-compendium-button">
             ADD TO COMPENDIUM
           </button>
         </div>
         <div class="row justify-center">
-          <button class="my-compendium-button hylia-font" id="my-compendium-button-2">MY COMPENDIUM</button>
+          <button class="my-compendium-button hylia-font grow" id="my-compendium-button-2">MY COMPENDIUM</button>
+        </div>
+        <div class="row justify-center">
+          <button class="delete-entry-button hidden" id="delete-entry-button">DELETE ENTRY</button>
         </div>
       </div>
       <footer class="row justify-center">
@@ -124,17 +126,17 @@
         <textarea name="edit-note-box" id="edit-note-box" cols="35" rows="10"></textarea>
       </div>
       <div class="row modal-buttons">
-        <button class="cancel-button hylia-font" id="edit-cancel-button">CANCEL</button>
-        <button type="submit" class="confirm-button hylia-font" id="edit-confirm-button">CONFIRM</button>
+        <button class="cancel-button hylia-font grow" id="edit-cancel-button">CANCEL</button>
+        <button type="submit" class="confirm-button hylia-font grow" id="edit-confirm-button">CONFIRM</button>
       </div>
     </div>
     <div class=" delete-modal-wrapper column-full absolute hidden" id="delete-modal">
       <div class="row align-center justify-center">
-        <h3>Are you sure you want to <br> delete this entry?</h3>
+        <h3 class="hylia-font">Are you sure you want to <br> delete this entry?</h3>
       </div>
       <div class="row modal-buttons">
-        <button class="cancel-button" id="delete-cancel-button">cancel</button>
-        <button class="confirm-button" id="delete-confirm-button">confirm</button>
+        <button class="cancel-button hylia-font grow" id="delete-cancel-button">cancel</button>
+        <button class="confirm-button hylia-font grow" id="delete-confirm-button">confirm</button>
       </div>
     </div>
   </main>
