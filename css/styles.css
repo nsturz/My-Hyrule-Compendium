@@ -139,14 +139,6 @@ footer {
   transform: scale(1.1);
 }
 
-h1 {
-  text-align: center;
-}
-
-h1:hover {
-  cursor: pointer;
-}
-
 h2 {
   font-size: 5rem;
   padding-bottom: 0%;
@@ -154,10 +146,6 @@ h2 {
 
 h3 {
   font-size: 2rem;
-}
-
-h4:hover {
-  cursor: pointer;
 }
 
 header {
@@ -181,17 +169,6 @@ header {
 @font-face {
   font-family: Triforce, serif;
   src: url("../fonts/Triforce.ttf");
-}
-
-i {
-  font-family: Triforce, sans-serif;
-  font-size: 2rem;
-  padding-top: 2rem;
-  padding-left: 1rem;
-}
-
-i:hover {
-  cursor: pointer;
 }
 
 input {
