@@ -69,7 +69,6 @@ function returnMaterials(name) {
       idText.textContent = response.data.materials[i].id;
       heartsRecovered.className = 'text-align-center hylia-font';
       heartsRecoveredText.className = 'text-align-center';
-
       // what is being hidden 👇🏼
       drops.className = 'text-align-center hidden';
       dropsText.className = 'text-align-center hidden';

@@ -153,10 +153,6 @@ header {
   color: white;
 }
 
-.hidden {
-  display: none;
-}
-
 .hylia-font {
   font-family: "Hylia Serif", sans-serif;
 }
@@ -368,4 +364,8 @@ ul {
   .column-one-third {
     flex-basis: 100%;
   }
+}
+
+.hidden {
+  display: none;
 }
