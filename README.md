@@ -28,13 +28,25 @@ https://nsturz.github.io/ajax-project/
 
 ## Preview
 
-### User Can Search For Entries and add it to their Compendium
+### User can search for entries and add it to their Compendium
 ![Kapture 2022-12-29 at 10 16 27](https://user-images.githubusercontent.com/94485412/209993557-111cf889-a1b6-4945-bfbd-d916ac4c3504.gif)
 
 ### User can add notes to compendium
 ![Kapture 2022-12-30 at 05 09 51](https://user-images.githubusercontent.com/94485412/210075288-2484d145-6075-459d-acf1-e463be68be94.gif)
 
 
+## Getting started
+
+1. Clone the repository.
+   ```shell
+      git@github.com:nsturz/ajax-project.git
+   ```
+2. Install dependencies with Node Process Manager.
+    ```shell
+       npm install
+    ```
+3. Open index.html in your web browser.    
+   
 
 
 
