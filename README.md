@@ -31,6 +31,7 @@ https://nsturz.github.io/ajax-project/
 ![Kapture 2022-12-29 at 10 16 27](https://user-images.githubusercontent.com/94485412/209993557-111cf889-a1b6-4945-bfbd-d916ac4c3504.gif)
 
 
+![Kapture 2022-12-30 at 05 09 51](https://user-images.githubusercontent.com/94485412/210075001-1a8ab9f3-a57a-434f-93e4-77ff948b455b.gif)
 
 
 
