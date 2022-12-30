@@ -16,7 +16,7 @@ As a fan of The Legend Of Zelda franchise, I thought it would be fun to be able 
 
 ## Live Demo
 
-https://nsturz.github.io/ajax-project/
+https://nsturz.github.io/My-Hyrule-Compendium/
 
 ## Features
 
