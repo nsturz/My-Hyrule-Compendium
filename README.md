@@ -6,7 +6,7 @@ A web application for fans of The Legend Of Zelda: Breath Of The Wild that allow
 
 As a fan of The Legend Of Zelda franchise, I thought it would be fun to be able to access in-game data on items, creatures, and more that may have not been discovered during the initial gameplay. 
 
-##Technologies Used
+## Technologies Used
 
 - Hyrule Compendium API
 - JavaScript
